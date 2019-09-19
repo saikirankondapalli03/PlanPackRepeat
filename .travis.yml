@@ -1,4 +1,6 @@
-before_script: cd code/travelapp-boot/
+before_script: 
+  - cd code/travelapp-boot/
+  - chmod +x mvnw
 
 script:
   - ./mvnw clean install -B
