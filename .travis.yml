@@ -4,4 +4,5 @@ before_script:
   - chmod +x mvnw
 
 script:
-  - ./mvnw clean install -B
+  - echo $TRAVIS_BUILD_DIR
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
