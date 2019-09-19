@@ -15,7 +15,7 @@ env:
 
 addons:
   sonarcloud:
-    organization: "sivaprasadreddy-github"
+    organization: "saikirankondapalli03-github"
     token:
       secure: $SONAR_TOKEN
 
