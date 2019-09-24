@@ -1,4 +1,8 @@
-package com.travellerapp.rest.model;
+package com.travellerapp.domain;
+
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 public class Traveller {
 
@@ -6,25 +10,19 @@ public class Traveller {
 
     }
 
-    public Traveller(Integer id, String firstName, String lastName, String email) {
-        super();
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
- 
-    private Integer id;
+    @Id
+    private ObjectId _id;
+    
     private String firstName;
     private String lastName;
     private String email;
 
-    public Integer getId() {
-        return id;
+    public ObjectId getId() {
+        return _id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(ObjectId id) {
+        this._id = id;
     }
 
     public String getFirstName() {
@@ -53,6 +51,6 @@ public class Traveller {
 
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+        return "Traveller [id=" + _id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
     }
 }
