@@ -1,7 +1,6 @@
 before_script: 
   - cd code/travelapp-boot/
   - echo $TRAVIS_BUILD_DIR
-  - chmod +x mvnw
 
 script:
   - echo $TRAVIS_BUILD_DIR
