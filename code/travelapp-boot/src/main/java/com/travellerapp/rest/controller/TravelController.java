@@ -14,7 +14,7 @@ import com.travellerapp.domain.Traveller;
 import com.travellerapp.rest.model.TravellerDTO;
 
 @RestController
-@RequestMapping(path = "/employees")
+@RequestMapping(path = "/travellers")
 public class TravelController 
 {
 	@Autowired

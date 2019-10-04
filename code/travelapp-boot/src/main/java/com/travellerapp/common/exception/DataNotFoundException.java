@@ -7,7 +7,7 @@ public class DataNotFoundException extends BaseException {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 552337992958619765L;
+	private static final long serialVersionUID = 55233392958619765L;
 
 	/**
 	 * 
@@ -19,23 +19,22 @@ public class DataNotFoundException extends BaseException {
 	public DataNotFoundException(String arg0) {
 		super(arg0);
 	}
-	
+
 	public DataNotFoundException(Throwable arg0) {
 		super(arg0);
 	}
 
-	public DataNotFoundException( String key, String[] parameters) {
+	public DataNotFoundException(String key, String[] parameters) {
 		super(key, parameters);
 	}
-	
 
 	public DataNotFoundException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 	}
 
-    public DataNotFoundException(String errorCode, String[] parameters, Throwable cause) {
-   	    super(errorCode,parameters,cause);
-    }
+	public DataNotFoundException(String errorCode, String[] parameters, Throwable cause) {
+		super(errorCode, parameters, cause);
+	}
 
 	public DataNotFoundException(Message message) {
 		super(message);

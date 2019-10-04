@@ -13,50 +13,49 @@ import lombok.Data;
 @Data
 public class ResponseType<T> implements Serializable {
 
-    private String returnMessage;
-    private int returnCode;
-    private long timeTook;
-    private T data;
-    private String server;
+	private String returnMessage;
+	private int returnCode;
+	private long timeTook;
+	private T data;
+	private String server;
 
-    public ResponseType() {
-    	server = System.getProperty("jboss.server.name"); 
-    }
+	public ResponseType() {
+		server = System.getProperty("jboss.server.name");
+	}
 
-    public ResponseType(ReturnCodes returnCode) {
-        setReturnCodeViaCode(returnCode);
-    }
+	public ResponseType(ReturnCodes returnCode) {
+		setReturnCodeViaCode(returnCode);
+	}
 
-    public ResponseType(ReturnCodes returnCode, T data) {
-        setReturnCodeViaCode(returnCode);
-    }
+	public ResponseType(ReturnCodes returnCode, T data) {
+		setReturnCodeViaCode(returnCode);
+	}
 
-    @JsonIgnore
-    public void setReturnCodeViaCode(ReturnCodes returnCode) {
-        this.returnCode = returnCode.getValue();
-        if (returnMessage == null || returnMessage.equals(""))
-            returnMessage = returnCode.getDescription();
-    }
+	@JsonIgnore
+	public void setReturnCodeViaCode(ReturnCodes returnCode) {
+		this.returnCode = returnCode.getValue();
+		if (returnMessage == null || returnMessage.equals(""))
+			returnMessage = returnCode.getDescription();
+	}
 
-    public void setReturnCode(int returnCode){
-        this.returnCode = returnCode;
-    }
+	public void setReturnCode(int returnCode) {
+		this.returnCode = returnCode;
+	}
 
-    public ResponseType<T> validationFailed(List<String> badFields) {
-        setReturnCodeViaCode(ReturnCodes.BadRequest);
-        return this;
-    }
+	public ResponseType<T> validationFailed(List<String> badFields) {
+		setReturnCodeViaCode(ReturnCodes.BadRequest);
+		return this;
+	}
 
-    public ResponseType<T> success() {
-        setReturnCodeViaCode(ReturnCodes.Success);
-        return this;
-    }
+	public ResponseType<T> success() {
+		setReturnCodeViaCode(ReturnCodes.Success);
+		return this;
+	}
 
-    public ResponseType<T> success(String message) {
-        //setReturnMessage(message);
-        setReturnCodeViaCode(ReturnCodes.Success);
-        return this;
-    }
+	public ResponseType<T> success(String message) {
+		// setReturnMessage(message);
+		setReturnCodeViaCode(ReturnCodes.Success);
+		return this;
+	}
 
 }
-

@@ -1,19 +1,6 @@
 package com.travellerapp.rest.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.travellerapp.business.TravellerServiceImpl;
-import com.travellerapp.domain.Traveller;
-import com.travellerapp.rest.model.TravellerDTO;
-
-@RestController
+/*@RestController
 @RequestMapping(path = "/employees")
 public class ItineraryController 
 {
@@ -60,4 +47,4 @@ public class ItineraryController
     }
     
     
-  }
+  }*/

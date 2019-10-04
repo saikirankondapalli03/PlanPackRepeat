@@ -2,6 +2,11 @@ package com.travellerapp.common.exception;
 
 public class BusinessServiceException extends BaseException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public BusinessServiceException() {
 		// TODO Auto-generated constructor stub
 	}
@@ -10,11 +15,11 @@ public class BusinessServiceException extends BaseException {
 		super(arg0);
 		// TODO Auto-generated constructor stub
 	}
- 
-	public BusinessServiceException( String key, String[] parameters) {
+
+	public BusinessServiceException(String key, String[] parameters) {
 		super(key, parameters);
 	}
-	
+
 	public BusinessServiceException(BaseException arg0) {
 		super(arg0);
 		// TODO Auto-generated constructor stub

@@ -14,47 +14,42 @@ public class BaseException extends Exception {
 	protected String[] parameters;
 	protected Message userMessage;
 
-
 	// Define some constructors
 
-	public BaseException(String errorCode)
-	{
+	public BaseException(String errorCode) {
 		super(errorCode);
 		this.errorCode = errorCode;
 		this.userMessage = new Message(errorCode, null);
 	}
 
-	public BaseException(String errorCode, String[] parameters)	
-	{
-		//Setting exception message by calling super constructor
+	public BaseException(String errorCode, String[] parameters) {
+		// Setting exception message by calling super constructor
 		super(String.format("%s - %s", errorCode, Arrays.toString(parameters)));
-		
+
 		this.errorCode = errorCode;
-		if (parameters != null){
+		if (parameters != null) {
 			this.parameters = Arrays.copyOf(parameters, parameters.length);
 		}
 		this.userMessage = new Message(errorCode, null);
 	}
 
-	public BaseException(String errorCode, Throwable cause)
-	{
+	public BaseException(String errorCode, Throwable cause) {
 		super(cause);
 		this.errorCode = errorCode;
 		this.userMessage = new Message(errorCode, null);
 	}
 
-	public BaseException(String errorCode, String[] parameters, Throwable cause)
-	{
+	public BaseException(String errorCode, String[] parameters, Throwable cause) {
 		super(cause);
 		this.errorCode = errorCode;
-		if (parameters != null){
+		if (parameters != null) {
 			this.parameters = Arrays.copyOf(parameters, parameters.length);
 		}
 		this.userMessage = new Message(errorCode, null);
-	}	
-	
+	}
+
 	public BaseException(Message message) {
-		//Setting exception message by calling super constructor
+		// Setting exception message by calling super constructor
 		super(message != null ? message.toString() : "");
 		this.userMessage = message;
 	}
@@ -86,8 +81,8 @@ public class BaseException extends Exception {
 
 	public String[] getParameters() {
 		String[] parametersClone = null;
-		if (this.parameters != null){
-			parametersClone =  Arrays.copyOf(this.parameters, this.parameters.length);
+		if (this.parameters != null) {
+			parametersClone = Arrays.copyOf(this.parameters, this.parameters.length);
 		}
 		return parametersClone;
 	}
