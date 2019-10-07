@@ -45,6 +45,26 @@ public class UserServiceImpl implements UserService{
 
 	
 	@Override
+	public User getUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		User user = new User();
+		try {
+			 user = userRepository.findUserByEmail(email);
+		} 
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+	   return user;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	@Override
 	public User createUser(User user) {
 		// TODO Auto-generated method stub
 		try {

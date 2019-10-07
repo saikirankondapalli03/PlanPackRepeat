@@ -8,6 +8,8 @@ import javax.validation.Valid;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -56,7 +58,7 @@ public class UserController
 
     
     @GetMapping(path="/getUserById/{id}", produces = "application/json")
-    public User getEmployeesFromDb(@PathVariable String id) 
+    public User getUserById(@PathVariable String id) 
     {
     	User user = new User();
     	try {
@@ -67,6 +69,30 @@ public class UserController
 		}
         return user;
     }
+    
+    
+    @GetMapping(path="/getUserByEmail/{email}", produces = "application/json")
+    public ResponseEntity<User>  getUserByEmail(@PathVariable String email) 
+    {
+    	User user= userService.getUserByEmail(email);
+    	if(user !=null) {
+    		return ResponseEntity.status(HttpStatus.OK).body(user);
+    		//return ResponseEntity.ok().body(user);
+    	}else {
+    		return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    	}
+    	
+    }
+    
+    @RequestMapping(value = "/createuser", method = RequestMethod.POST)
+    public ResponseEntity<User> createUserWithDetails(@Valid @RequestBody User user) 
+	{
+    	
+    	return ResponseEntity.ok().body(userService.createUser(user));
+		
+	}
+    
+    
     
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public User createUser(@Valid @RequestBody User user) 

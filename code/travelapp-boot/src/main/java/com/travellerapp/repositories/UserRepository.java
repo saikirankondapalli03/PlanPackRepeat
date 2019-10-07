@@ -10,4 +10,6 @@ import com.travellerapp.domain.User;
 public interface UserRepository extends MongoRepository<User, String> {
 	
 	User findUserBy_id(ObjectId _id);
+	
+	User findUserByEmail(String email);
 }
