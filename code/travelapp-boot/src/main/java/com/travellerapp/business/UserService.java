@@ -9,7 +9,6 @@ import com.travellerapp.domain.User;
 
 public interface UserService {
 	List<User> listAllUsers();
-	
 	User getUserById(String id);
 	User createUser(User user);
 	User getUserByEmail(String email);
