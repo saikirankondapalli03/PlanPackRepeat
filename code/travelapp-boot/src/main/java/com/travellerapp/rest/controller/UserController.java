@@ -46,29 +46,16 @@ public class UserController
     @GetMapping(path="/getAllUsers", produces = "application/json")
     public List<User> getAllUsers() 
     {
-    	List<User> list = new ArrayList<User>();
-    	try {
-    		list=userService.listAllUsers();
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-        return list;
+    	
+       return userService.listAllUsers();
     }
 
     
     @GetMapping(path="/getUserById/{id}", produces = "application/json")
     public User getUserById(@PathVariable String id) 
     {
-    	User user = new User();
-    	try {
-    		user=userService.getUserById(id);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-        return user;
-    }
+    	return userService.getUserById(id);
+	}
     
     
     @GetMapping(path="/getUserByEmail/{email}", produces = "application/json")
@@ -77,7 +64,6 @@ public class UserController
     	User user= userService.getUserByEmail(email);
     	if(user !=null) {
     		return ResponseEntity.status(HttpStatus.OK).body(user);
-    		//return ResponseEntity.ok().body(user);
     	}else {
     		return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     	}
@@ -87,9 +73,7 @@ public class UserController
     @RequestMapping(value = "/createuser", method = RequestMethod.POST)
     public ResponseEntity<User> createUserWithDetails(@Valid @RequestBody User user) 
 	{
-    	
     	return ResponseEntity.ok().body(userService.createUser(user));
-		
 	}
     
     
@@ -97,55 +81,44 @@ public class UserController
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public User createUser(@Valid @RequestBody User user) 
 	{
-		try {
-			user = userService.createUser(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return user;
+		return userService.createUser(user);
 	}
     
     
     @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     public User updateUser(@PathVariable("id") ObjectId id,@Valid @RequestBody User user) 
 	{
-		try {
-			user = userService.updateUser(id,user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return user;
+    	return userService.updateUser(id,user);
 	}
     
 	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
-	public void deleteUser(@PathVariable ObjectId id) {
-		try {
-			userService.deleteUser(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public ResponseEntity<String> deleteUser(@PathVariable ObjectId id) {
+		ResponseEntity<String> response= new ResponseEntity<String>(HttpStatus.OK);
+		userService.deleteUser(id);
+		return response;
 	}
     
     
     @RequestMapping(value = "/users", method = RequestMethod.POST)
     public List<User> createUsers(@Valid @RequestBody List<User> users) 
 	{
-		try {
-			users = userService.createUsers(users);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return users;
+		return userService.createUsers(users);
 	}
     
+    
+    @RequestMapping(value = "/deleteAllUsers", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteAllUsers() 
+	{
+    	ResponseEntity<String> response= new ResponseEntity<String>(HttpStatus.OK);
+    	userService.listAllUsers().stream().forEach(x->{
+				userService.deleteUser(new ObjectId(x.getId()));
+			});;
+		return response;
+	}
     
     @GetMapping(path="/getConfiguration", produces = "application/json")
     public String getConfiguration() 
     {
     	return welcomeMessage;
     }
-    
-    
-    
-    
   }

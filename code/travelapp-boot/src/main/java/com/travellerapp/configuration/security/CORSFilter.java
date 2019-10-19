@@ -1,4 +1,4 @@
-package com.travellerapp.security;
+package com.travellerapp.configuration.security;
 
 import java.io.IOException;
 

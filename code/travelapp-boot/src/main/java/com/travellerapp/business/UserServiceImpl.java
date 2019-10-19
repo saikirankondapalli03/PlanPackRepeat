@@ -1,6 +1,5 @@
 package com.travellerapp.business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -19,101 +18,41 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public List<User> listAllUsers() {
-		// TODO Auto-generated method stub
-		List<User> travellers = new ArrayList<>();
-		try {
-			 travellers =(List<User>) userRepository.findAll();
-		} 
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	   return travellers;
+		return (List<User>) userRepository.findAll();
 	}
 	
 	@Override
 	public User getUserById(String id) {
-		// TODO Auto-generated method stub
-		User user = new User();
-		try {
-			 user = userRepository.findUserBy_id(new ObjectId(id));
-		} 
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	   return user;
+	   return userRepository.findUserBy_id(new ObjectId(id));
 	}
 
 	
 	@Override
 	public User getUserByEmail(String email) {
-		// TODO Auto-generated method stub
-		User user = new User();
-		try {
-			 user = userRepository.findUserByEmail(email);
-		} 
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	   return user;
+		return userRepository.findUserByEmail(email);
 	}
 
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	public User createUser(User user) {
-		// TODO Auto-generated method stub
-		try {
-			 user = userRepository.save(user);
-		} 
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	   return user;
+		return userRepository.save(user);
 	}
+	
 	
 	@Override
 	public User updateUser(ObjectId id, User user) {
-		// TODO Auto-generated method stub
-		try {
-			user.setId(id);
-			user = userRepository.save(user);
-		} 
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	   return user;
+		user.setId(id);
+		return userRepository.save(user);
 	}
-
-	
 	
 	@Override
 	public void deleteUser(ObjectId id) {
-		// TODO Auto-generated method stub
-		try {
-			userRepository.delete(userRepository.findUserBy_id(id));
-		} 
-		catch(Exception e) {
-			e.printStackTrace();
-		}
+		userRepository.delete(userRepository.findUserBy_id(id));
 	}
 	
 	
 	@Override
 	public List<User> createUsers(List<User> users) {
-		// TODO Auto-generated method stub
-		List<User> result = new ArrayList<User>();
-		try {
-			result = userRepository.saveAll(users);
-		} 
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-	   return result;
+		return userRepository.saveAll(users);
 	}
 	
 

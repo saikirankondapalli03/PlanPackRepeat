@@ -1,4 +1,4 @@
-package com.travellerapp.rest.exception;
+package com.travellerapp.common.exception;
 
 public class MissingHeaderException extends RuntimeException
 {
