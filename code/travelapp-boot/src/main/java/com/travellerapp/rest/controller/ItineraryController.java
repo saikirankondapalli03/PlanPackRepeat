@@ -76,4 +76,14 @@ public class ItineraryController
 			});;
 		return response;
 	}
+    
+    @RequestMapping(value = "/deleteDestination/{email}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteDestination(@PathVariable String email,@Valid @RequestBody List<String> objectIds) 
+	{
+    	ResponseEntity<String> response= new ResponseEntity<String>(HttpStatus.OK);
+    	itineraryService.deleteDestinationFromItinerary(email, objectIds);
+		return response;
+	}
+    
+    
  }

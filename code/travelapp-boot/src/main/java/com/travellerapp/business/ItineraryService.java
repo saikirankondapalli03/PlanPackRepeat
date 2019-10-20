@@ -14,4 +14,5 @@ public interface ItineraryService {
 	List<Itinerary> createItineraries(List<Itinerary> itinerary);
 	Itinerary updateItinerary(ObjectId id, Itinerary itinerary);
 	void deleteItinerary(ObjectId id);
+	void deleteDestinationFromItinerary(String email,List<String> destinationIds);
 }

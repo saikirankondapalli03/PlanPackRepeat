@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Itinerary")
 public class Itinerary {
@@ -34,6 +35,7 @@ public class Itinerary {
 		this.isActive=isActive;
 	}
 
+	@DBRef
 	private List<Destination> destinations;
 
 	
