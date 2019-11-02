@@ -222,6 +222,10 @@ h2, h3 {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+.glyphicon-plus{
+	width:100%;
+	length:100%;
+}
 .glyphicon-asterisk:before {
 	content: "\002a";
 }
@@ -5551,7 +5555,11 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', en
 	left: 20%;
 	right: 20%;
 	padding-bottom: 30px;
+	font-size: 20px;
+	top: 0;
+	bottom: auto;
 }
+
 .carousel-indicators {
 	bottom: 20px;
 }
