@@ -4,14 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Portfolio</title>
+    <title>Dashboard</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="scss/main.css">
     <link rel="stylesheet" href="scss/skin.css">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <!-- Custom styles for this template-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="./script/index.js"></script>
 </head>
 
@@ -36,6 +43,7 @@
                     <div id="navbar" class="collapse navbar-collapse navbar-right">
                         <ul class="nav navbar-nav">
                             <li><a href="home.html">Home</a></li>
+                            <li><a href="">New Itinerary</a></li>
                             <li class="active"><a href="#">Dashboard</a></li>
                             <li><a href="">Sign out</a></li>
                         </ul>
@@ -46,35 +54,113 @@
         </nav>
     </header>
     <!--/.nav-ends -->
-    <div>
-
-    </div>
-
-    <section id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 col-xs-12 block">
-                    <div class="footer-block">
-                        <h4>Address</h4>
-                        <hr />
-                        <p>Hoboken, NJ 07030</p>
-                    </div>
-                </div>
-            </div>
+    <section id="top_banner_home">
+        <div class="banner_home">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <form class="form-inline col-md-8 col-sm-8 col-xs-6" action="/action_page.php">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </form>
+            </nav>
         </div>
     </section>
 
-    <div id="panel">
-        <div id="panel-admin">
-            <div class="panel-admin-box">
-                <div id="tootlbar_colors">
-                    <button class="color" style="background-color:#1abac8;" onclick="mytheme(0)"></button>
-                    <button class="color" style="background-color:#159eee;" onclick="mytheme(5)"> </button>
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div class="container">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h4 mb-0 text-gray-800">Dashboard</h1>
+            </div>
+            <div class="row" id="home">
+
+                <!-- Budget card -->
+                <div class="col-md-4">
+                    <div class="card border-left-budget shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <i class="fa fa-money fa-2x text-gray-300" style="float:right"></i>
+                                </div>
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Budget </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$1000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Total Expense card -->
+                <div class="col-md-4">
+                    <div class="card border-left-expense shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <i class="fa fa-dollar fa-2x text-gray-300" style="float:right"></i>
+                                </div>
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-expense text-uppercase mb-1">Total expense
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$450</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Remaining card -->
+                <div class="col-md-4">
+                    <div class="card border-left-remaining shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <i class="fa fa-clipboard fa-2x text-gray-300" style="float:right"></i>
+                                </div>
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-remaining text-uppercase mb-1">Remaining
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$450 </div>
+                                </div>
+                                <div class="progress progress-sm mr-2">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 90%"
+                                        aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h4 mb-0 text-gray-800">Recent-plan</h1>
+            </div>
         </div>
-        <a class="open" href="#"><span><i class="fa fa-gear fa-spin"></i></span></a>
-    </div>
+
+
+        <section id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12 block">
+                        <div class="footer-block">
+                            <h4>Address</h4>
+                            <hr />
+                            <p>Hoboken, NJ 07030</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="panel">
+            <div id="panel-admin">
+                <div class="panel-admin-box">
+                    <div id="tootlbar_colors">
+                        <button class="color" style="background-color:#1abac8;" onclick="mytheme(0)"></button>
+                        <button class="color" style="background-color:#159eee;" onclick="mytheme(5)"> </button>
+                    </div>
+                </div>
+
+            </div>
+            <a class="open" href="#"><span><i class="fa fa-gear fa-spin"></i></span></a>
+        </div>
 </body>
 </html>
