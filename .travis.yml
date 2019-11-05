@@ -12,18 +12,17 @@ script:
   - mkdir build
   - cp target/travelapp-0.0.1-SNAPSHOT.jar $TRAVIS_BUILD_DIR/build/travelapp.jar  
 
-script:
-  deploy:
-    provider: elasticbeanstalk
-    skip_cleanup: true
-    app: travelapp
-    env: Travelapp-env-1
-    zip_file: '$TRAVIS_BUILD_DIR/build/travelapp.jar'
-    bucket_name: elasticbeanstalk-us-east-1-414657016646
-    region: us-east-1
-    access_key_id:
-      secure: $ACCESSKEYID
-    secret_access_key:
-      secure: $SECRETACCESSKEY
-    on:
-      branch: master
+deploy:
+   provider: elasticbeanstalk
+   skip_cleanup: true
+   app: travelapp
+   env: Travelapp-env-1
+   zip_file: '$TRAVIS_BUILD_DIR/build/travelapp.jar'
+   bucket_name: elasticbeanstalk-us-east-1-414657016646
+   region: us-east-1
+   access_key_id:
+     secure: $ACCESSKEYID
+   secret_access_key:
+     secure: $SECRETACCESSKEY
+   on:
+     branch: master
