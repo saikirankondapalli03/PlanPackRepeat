@@ -1,6 +1,7 @@
 before_script: 
   - cd code/travelapp-boot/
   - echo $TRAVIS_BUILD_DIR
+  - echo "Sai "
 
 cache:
   directories:
