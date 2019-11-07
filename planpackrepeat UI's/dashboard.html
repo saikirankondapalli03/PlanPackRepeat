@@ -17,6 +17,8 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="./script/index.js"></script>
@@ -133,34 +135,131 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h4 mb-0 text-gray-800">Recent-plan</h1>
             </div>
-        </div>
 
-
-        <section id="footer">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-3 col-sm-3 col-xs-12 block">
-                        <div class="footer-block">
-                            <h4>Address</h4>
-                            <hr />
-                            <p>Hoboken, NJ 07030</p>
+                <div class="row mt-3 top-buffer">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-block p-t-2">
+                                <h3 class="card-title text-primary text-center">New York City</h3>
+                            </div>
+                            <div class="card-img-top card-img-top-250">
+                                <div id="myCarousel0" class="carousel slide" data-pause="true">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#myCarousel0" data-slide-to="0" class="active"></li>
+                                        <li data-target="#myCarousel0" data-slide-to="1"></li>
+                                    </ol>
+
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active" style="height:auto">
+                                            <img src="img/nyc.jpg" alt="Image" style="width:100%; height:350px">
+                                            <div class="carousel-caption" style="align:bottom">
+                                                NYC
+                                            </div>
+                                        </div>
+
+                                        <div class="item" style="height:auto">
+                                            <img src="img/dc.jpg" alt="Image" style="width:100%; height: 350px">
+                                            <div class="carousel-caption">
+                                                DC
+                                            </div>
+                                        </div>
+                                        <a class="left carousel-control" href="#myCarousel0" role="button"
+                                            data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+
+                                        <a class="right carousel-control" href="#myCarousel0" role="button"
+                                            data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                        <a class='btn btn-success' style="width:100%" href="http://getbootstrap.com">NYC
+                                            Itinerary</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-block p-t-2">
+                                <h3 class="text-primary  text-center"> 15$</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-block p-t-2">
+                                <h3 class="card-title text-primary text-center">Florida and Hoboken </h3>
+                            </div>
+                            <div class="card-img-top card-img-top-250">
+                                <div id="myCarousel1" class="carousel slide" data-pause="true">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+                                        <li data-target="#myCarousel1" data-slide-to="1"></li>
+                                    </ol>
+
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active" style="height:auto">
+                                            <img src="img/florida.jpg" alt="Image" style="width:100%; height:350px">
+                                            <div class="carousel-caption" style="align:bottom">
+                                                Florida
+                                            </div>
+                                        </div>
+
+                                        <div class="item" style="height:auto">
+                                            <img src="img/hoboken.jpg" alt="Image" style="width:100%; height: 350px">
+                                            <div class="carousel-caption">
+                                                Hoboken
+                                            </div>
+                                        </div>
+                                        <a class="left carousel-control" href="#myCarousel1" role="button"
+                                            data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        </a>
+                                        <a class="right carousel-control" href="#myCarousel1" role="button"
+                                            data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        </a>
+                                        <a class='btn btn-success' style="width:100%"
+                                            href="http://getbootstrap.com">Florida and
+                                            Hoboken
+                                            Itinerary</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-block p-t-2">
+                                <h3 class="text-primary  text-center"> 100$</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-        <div id="panel">
-            <div id="panel-admin">
-                <div class="panel-admin-box">
-                    <div id="tootlbar_colors">
-                        <button class="color" style="background-color:#1abac8;" onclick="mytheme(0)"></button>
-                        <button class="color" style="background-color:#159eee;" onclick="mytheme(5)"> </button>
+
+            <section id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 block">
+                            <div class="footer-block">
+                                <h4>Address</h4>
+                                <hr />
+                                <p>Hoboken, NJ 07030</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
+            <div id="panel">
+                <div id="panel-admin">
+                    <div class="panel-admin-box">
+                        <div id="tootlbar_colors">
+                            <button class="color" style="background-color:#1abac8;" onclick="mytheme(0)"></button>
+                            <button class="color" style="background-color:#159eee;" onclick="mytheme(5)"> </button>
+                        </div>
+                    </div>
+                </div>
+                <a class="open" href="#"><span><i class="fa fa-gear fa-spin"></i></span></a>
             </div>
-            <a class="open" href="#"><span><i class="fa fa-gear fa-spin"></i></span></a>
-        </div>
 </body>
+
 </html>
