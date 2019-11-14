@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="scss/main.css">
+    <link rel="stylesheet" href="scss/skin.css">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="./script/index.js"></script>
+</head>
+
+<body id="wrapper">
+
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="row">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <h2>PlanPackRepeat</h2><span>plan your itinerary</span>
+                        </a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse navbar-right">
+                        <ul class="nav navbar-nav">
+                            <li><a href="home.html">Home</a></li>
+                            <li><a href="">New Itinerary</a></li>
+                            <li><a href="">Dashboard</a></li>
+                            <li class="active"><a href="#">Recent plan</a></li>
+                            <li><a href="">Sign out</a></li>
+                        </ul>
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!--/.nav-ends -->
+    <section id="top_banner_home">
+        <div class="banner_home">
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <form class="form-inline col-md-8 col-sm-8 col-xs-6" action="/action_page.php">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </form>
+            </nav>
+        </div>
+    </section>
+
+
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <div class="container">
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h4 mb-0 text-gray-800">Recent-plan</h1>
+            </div>
+            <div class="row" id="home">
+
+                <!-- Budget card -->
+                <div class="col-md-4">
+                    <div class="card border-left-budget shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <i class="fa fa-money fa-2x text-gray-300" style="float:right"></i>
+                                </div>
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Budget </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">$1000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- Destinations table -->
+                <table class="table">
+                  <thead class="text-primary text-uppercase">
+                    <tr>
+                      <th>Destinations</th>
+                      <th>Time</th>
+                      <th>Cost</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Empire States</td>
+                      <td>Monday at 9:00 AM </td>
+                      <td>$98</td>
+                    </tr>
+                    <tr>
+                      <td>Liberty State Park</td>
+                      <td>Monday at 3:00 PM </td>
+                      <td> $12 </td>
+                    </tr>
+                    <tr>
+                      <td>brooklyn bridge</td>
+                      <td>Tuesday at 10:00 AM </td>
+                      <td> $0 </td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+
+            <section id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-xs-12 block">
+                            <div class="footer-block">
+                                <h4>Address</h4>
+                                <hr />
+                                <p>Hoboken, NJ 07030</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div id="panel">
+                <div id="panel-admin">
+                    <div class="panel-admin-box">
+                        <div id="tootlbar_colors">
+                            <button class="color" style="background-color:#1abac8;" onclick="mytheme(0)"></button>
+                            <button class="color" style="background-color:#159eee;" onclick="mytheme(5)"> </button>
+                        </div>
+                    </div>
+                </div>
+                <a class="open" href="#"><span><i class="fa fa-gear fa-spin"></i></span></a>
+            </div>
+</body>
+
+</html>
