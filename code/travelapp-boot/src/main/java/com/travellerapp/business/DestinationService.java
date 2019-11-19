@@ -9,4 +9,5 @@ public interface DestinationService {
 	Destination getDestinationById(String Id);
 	Destination saveDestination(Destination destination);
 	void deleteDestination(ObjectId id);
+	void deleteAllDestinations();
 }

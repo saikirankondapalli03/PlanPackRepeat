@@ -1,5 +1,7 @@
 package com.travellerapp.domain;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import org.bson.types.ObjectId;
@@ -12,9 +14,70 @@ public class Destination {
 	private ObjectId _id;
 	private String destName;
 	private String address;
-	private Date plannedTime;
+	private Timestamp plannedTime;
 	private String status;
 	private String imgUrl;
+	private String emailId;
+	private boolean isPublic;
+	private BigDecimal budget; 
+	private String itineraryId;
+	private Timestamp createdTs;
+	private Timestamp updatedTs;
+	private Timestamp createdBy;
+	private Timestamp updatedBy;
+	
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	public boolean isPublic() {
+		return isPublic;
+	}
+	public void setPublic(boolean isPublic) {
+		this.isPublic = isPublic;
+	}
+	public String getItineraryId() {
+		return itineraryId;
+	}
+	public void setItineraryId(String itineraryId) {
+		this.itineraryId = itineraryId;
+	}
+	public Timestamp getCreatedTs() {
+		return createdTs;
+	}
+	public void setCreatedTs(Timestamp createdTs) {
+		this.createdTs = createdTs;
+	}
+	public Timestamp getUpdatedTs() {
+		return updatedTs;
+	}
+	public void setUpdatedTs(Timestamp updatedTs) {
+		this.updatedTs = updatedTs;
+	}
+	public Timestamp getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(Timestamp createdBy) {
+		this.createdBy = createdBy;
+	}
+	public Timestamp getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(Timestamp updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+	public BigDecimal getBudget() {
+		if (budget==null) return new BigDecimal(0);
+		return budget;
+	}
+	public void setBudget(BigDecimal budget) {
+		this.budget = budget;
+	}
+	public ObjectId get_id() {
+		return _id;
+	}
 	public String getId() {
 		return _id.toHexString();
 	}
@@ -36,7 +99,7 @@ public class Destination {
 	public Date getPlannedTime() {
 		return plannedTime;
 	}
-	public void setPlannedTime(Date plannedTime) {
+	public void setPlannedTime(Timestamp plannedTime) {
 		this.plannedTime = plannedTime;
 	}
 	public String getStatus() {

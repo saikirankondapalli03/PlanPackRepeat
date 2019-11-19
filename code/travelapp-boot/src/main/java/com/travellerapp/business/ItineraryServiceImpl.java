@@ -3,11 +3,13 @@ package com.travellerapp.business;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.catalina.filters.ExpiresFilter.XServletOutputStream;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import com.travellerapp.cdd.ItineraryStatus;
 import com.travellerapp.domain.Destination;
 import com.travellerapp.domain.Itinerary;
 import com.travellerapp.repositories.DestinationRepository;
@@ -36,15 +38,25 @@ public class ItineraryServiceImpl implements ItineraryService{
 
 	@Override
 	public Itinerary createItinerary(Itinerary itinerary) {
+		Itinerary copyObj= itinerary;
 		Itinerary currentIt=itineraryRepo.findItineraryByEmail(itinerary.getEmail());
 		itinerary.getDestinations().forEach(x->{
+			x.setStatus(ItineraryStatus.ABOUT_TO_TRAVEL.getValue());
+			x.setEmailId(copyObj.getEmail());
 			Destination des= destRepo.save(x);
 			x= des; 
 		});
 		if(currentIt!= null) {
 			return updateItinerary(new ObjectId(currentIt.getId()), itinerary);
 		}
-		return itineraryRepo.save(itinerary);
+		itinerary.setStatus(ItineraryStatus.ABOUT_TO_TRAVEL.getValue());
+		itinerary= itineraryRepo.save(itinerary);
+		final String itineraryId= itinerary.getId();
+		itinerary.getDestinations().forEach(x->{
+			x.setItineraryId(itineraryId);
+			destRepo.save(x);
+		});
+		return itinerary;
 	}
 	
 	@Override

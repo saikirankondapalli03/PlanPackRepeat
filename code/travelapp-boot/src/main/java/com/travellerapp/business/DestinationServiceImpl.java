@@ -1,5 +1,7 @@
 package com.travellerapp.business;
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,4 +31,10 @@ public class DestinationServiceImpl implements DestinationService{
 		destRepo.delete(destRepo.findDestinationBy_id(id));
 	}
 	
+	
+	@Override
+	public void deleteAllDestinations(){
+		List<Destination> destinations= destRepo.findAll();
+		destinations.forEach(x-> deleteDestination(x.get_id()));
+	} 
 }

@@ -1,5 +1,7 @@
 package com.travellerapp.domain;
 
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -20,25 +22,56 @@ public class Itinerary {
 	private String email;
 	private boolean isPublic;
 	private boolean isActive;
-	private ObjectId budgetId;
+	private String status;
+	private BigDecimal budgetId;
+	private Timestamp createdTs;
+	private Timestamp updatedTs;
+	private Timestamp createdBy;
+	private Timestamp updatedBy;
 	
-	public Itinerary(ObjectId _id, Date startDate, Date endDate, String email, boolean isPublic, boolean isActive, ObjectId budgetId,
-			List<Destination> destinations) {
-		super();
-		this._id = _id;
-		this.startDate = startDate;
-		this.endDate = endDate;
-		this.email = email;
-		this.isPublic = isPublic;
-		this.budgetId = budgetId;
-		this.destinations = destinations;
-		this.isActive=isActive;
-	}
-
 	@DBRef
 	private List<Destination> destinations;
-
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Timestamp getCreatedTs() {
+		return createdTs;
+	}
+
+	public void setCreatedTs(Timestamp createdTs) {
+		this.createdTs = createdTs;
+	}
+
+	public Timestamp getUpdatedTs() {
+		return updatedTs;
+	}
+
+	public void setUpdatedTs(Timestamp updatedTs) {
+		this.updatedTs = updatedTs;
+	}
+
+	public Timestamp getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Timestamp createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Timestamp getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(Timestamp updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
 	public boolean isActive() {
 		return isActive;
 	}
@@ -50,11 +83,12 @@ public class Itinerary {
 	
 	
 	
-	public ObjectId getBudgetId() {
+	public BigDecimal getBudgetId() {
+		if(budgetId == null) return new BigDecimal(0); 
 		return budgetId;
 	}
 
-	public void setBudgetId(ObjectId budgetId) {
+	public void setBudgetId(BigDecimal budgetId) {
 		this.budgetId = budgetId;
 	}
 
