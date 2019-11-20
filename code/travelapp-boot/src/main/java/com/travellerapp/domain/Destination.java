@@ -116,9 +116,7 @@ public class Destination {
 	public Date getPlannedTime() {
 		return plannedTime;
 	}
-	public void setPlannedTime(Timestamp plannedTime) {
-		this.plannedTime = plannedTime;
-	}
+	
 	public String getStatus() {
 		return status;
 	}
