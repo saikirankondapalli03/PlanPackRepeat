@@ -1,5 +1,6 @@
 package com.travellerapp.business;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -15,5 +16,6 @@ public interface NotificationService {
 	void deleteAllNotifications();
 	Notification getNotificationById(String id);
 	Notification getNotificationByEmail(String email);
+	List<Notification> getNotificationByDate(String from, String to) throws ParseException;
 	void deleteNotification(ObjectId id);
 }

@@ -1,7 +1,11 @@
 package com.travellerapp.repositories;
 
+import java.util.Date;
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.travellerapp.domain.Notification;
@@ -11,6 +15,9 @@ public interface NotificationRepository extends MongoRepository<Notification, St
 
 	Notification findNotificationBy_id(ObjectId _id);
 	
-	Notification findNotificationBy_email(String email);
+	Notification findNotificationByemailId(String email);
+	
+	@Query("{'plannedTime':{ $gte: ?0, $lte: ?1}}}")                 
+	public List<Notification> getNotificationByDate(Date from,Date To); 
 
 }

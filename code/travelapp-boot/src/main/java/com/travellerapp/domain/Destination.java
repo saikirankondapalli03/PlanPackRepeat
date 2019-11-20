@@ -14,7 +14,7 @@ public class Destination {
 	private ObjectId _id;
 	private String destName;
 	private String address;
-	private Timestamp plannedTime;
+	private Date plannedTime;
 	private String status;
 	private String imgUrl;
 	private String emailId;
@@ -25,7 +25,24 @@ public class Destination {
 	private Timestamp updatedTs;
 	private Timestamp createdBy;
 	private Timestamp updatedBy;
+	private String latitude;
+	private String longitude;
 	
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	public void setPlannedTime(Date plannedTime) {
+		this.plannedTime = plannedTime;
+	}
 	public String getEmailId() {
 		return emailId;
 	}

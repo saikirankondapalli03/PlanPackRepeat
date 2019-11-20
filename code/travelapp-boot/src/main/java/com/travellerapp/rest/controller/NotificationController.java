@@ -1,5 +1,6 @@
 package com.travellerapp.rest.controller;
 
+import java.text.ParseException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -37,6 +38,17 @@ public class NotificationController
     public ResponseEntity<Notification> getNotificationByEmail(@PathVariable String email) 
     {
     	Notification notification= notificationService.getNotificationByEmail(email);
+    	if(notification !=null) {
+    		return ResponseEntity.status(HttpStatus.OK).body(notification);
+    	}else {
+    		return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    	}
+	}
+    
+    @GetMapping(path="/getNotificationDates/{startDate}/{endDate}", produces = "application/json")
+    public ResponseEntity<List<Notification>> getNotificationByEmail(@PathVariable String startDate,@PathVariable String endDate) throws ParseException
+    {
+    	List<Notification> notification= notificationService.getNotificationByDate(startDate,endDate);
     	if(notification !=null) {
     		return ResponseEntity.status(HttpStatus.OK).body(notification);
     	}else {

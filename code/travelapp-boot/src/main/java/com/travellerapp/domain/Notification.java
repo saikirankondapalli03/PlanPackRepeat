@@ -8,7 +8,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "notification")
+@Document(collection = "Notification")
 public class Notification 
 {
 	@Id
@@ -21,8 +21,8 @@ public class Notification
 	private String imgUrl;
 	private BigDecimal budget; 
 	private String itineraryId;
-	private Timestamp createdTs;
-	private Timestamp updatedTs;
+	private Date createdTs;
+	private Date updatedTs;
 	private String createdBy;
 	private String updatedBy;
 	public ObjectId get_id() {
@@ -79,13 +79,13 @@ public class Notification
 	public void setItineraryId(String itineraryId) {
 		this.itineraryId = itineraryId;
 	}
-	public Timestamp getCreatedTs() {
+	public Date getCreatedTs() {
 		return createdTs;
 	}
 	public void setCreatedTs(Timestamp createdTs) {
 		this.createdTs = createdTs;
 	}
-	public Timestamp getUpdatedTs() {
+	public Date getUpdatedTs() {
 		return updatedTs;
 	}
 	public void setUpdatedTs(Timestamp updatedTs) {
