@@ -1,7 +1,6 @@
 package com.travellerapp.domain;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -16,14 +15,10 @@ public class User {
     @Id
     private ObjectId _id;
     
-    @NotEmpty(message = "first name must not be empty")
     private String firstName;
-    
-    @NotEmpty(message = "last name must not be empty")
+   
     private String lastName;
     
-    @NotEmpty(message = "email must not be empty")
-    @Email(message = "email should be a valid email")
     private String email;
     
     private String favtDest;

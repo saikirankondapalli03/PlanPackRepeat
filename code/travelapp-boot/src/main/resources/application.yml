@@ -1,0 +1,36 @@
+# application.yml
+welcome:
+  message: Welcome message from property file! Welcome to ${app.name}
+
+server:
+  port: 5000
+  
+app:
+  name: TravellerApp
+  
+spring:
+  jackson:
+    mapper:
+     accept_case_insensitive_properties: true
+  data:
+    mongodb:
+      uri: mongodb+srv://sai:sai123@cluster0-bp4zb.mongodb.net/admin?retryWrites=true&w=majority
+      database: test
+      
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: planpackrepeat@gmail.com
+    password: PlanPackRepeat123
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+  
+  
+    

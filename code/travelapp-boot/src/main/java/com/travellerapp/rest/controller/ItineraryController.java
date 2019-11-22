@@ -1,7 +1,11 @@
 package com.travellerapp.rest.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.bson.types.ObjectId;
@@ -17,11 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.travellerapp.business.ItineraryServiceImpl;
 import com.travellerapp.domain.Itinerary;
+import com.travellerapp.email.EmailService;
+import com.travellerapp.email.Mail;
 
 @RestController
 @RequestMapping(path = "/itinerary")
 public class ItineraryController 
 {
+	@Autowired
+    private EmailService emailService;
+	
 	@Autowired
 	private ItineraryServiceImpl itineraryService;
 	 
@@ -31,6 +40,26 @@ public class ItineraryController
        return itineraryService.listAllItineraries();
     }
 
+	@GetMapping(path = "/getEmail", produces = "application/json")
+	public ResponseEntity<String> sendEmail() throws MessagingException, IOException {
+		ResponseEntity<String> response = new ResponseEntity<String>(HttpStatus.OK);
+		Mail mail = new Mail();
+		mail.setFrom("planpackrepeat@gmail.com");
+		mail.setTo("saikirankondapalli03@gmail.com");
+		mail.setSubject("Sending Email with Thymeleaf HTML Template Example");
+
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("name", "Memorynotfound.com");
+		model.put("location", "Belgium");
+		model.put("signature", "http://memorynotfound.com");
+		mail.setModel(model);
+
+		emailService.sendSimpleMessage(mail);
+		return response;
+	}
+	   
+       
+       
     @GetMapping(path="/getItineraryByEmail/{email}", produces = "application/json")
     public ResponseEntity<Itinerary> getActiveItineraryByEmail(@PathVariable String email) 
     {

@@ -18,7 +18,7 @@ public class ScheduledTasks {
     /**
      * Will print the time per 2 seconds
      */
-    @Scheduled(fixedRate = 10) // 2 seconds
+    @Scheduled(fixedRate = 10000000) // 2 seconds
     public void scheduleTaskWithFixedRate() {
         LOGGER.info("Fixed Rate Task: Execution Time {}", dateTimeFormatter.format(LocalDateTime.now()));
     }
@@ -28,7 +28,7 @@ public class ScheduledTasks {
      * This is due to the initial 2 seconds settings delay of {@code fixedDelay}
      * And the additional 5 seconds of Thread sleep
      */
-    @Scheduled(fixedDelay = 2000) // 2 seconds
+    @Scheduled(fixedDelay = 20000000) // 2 seconds
     public void scheduleTaskWithFixedDelay() {
         LOGGER.info("Fixed Delay Task: Execution Time {}", dateTimeFormatter.format(LocalDateTime.now()));
         try {
@@ -43,7 +43,7 @@ public class ScheduledTasks {
      * Will print the time per 2 seconds
      * But the first printing of time will be delayed by 5 seconds
      */
-    @Scheduled(fixedRate = 2000, initialDelay = 5000)
+    @Scheduled(fixedRate = 20000000, initialDelay = 5000)
     public void scheduleTaskWithInitialDelay() {
         LOGGER.info("Fixed Rate Task with Initial Delay: Execution Time {}", dateTimeFormatter.format(LocalDateTime.now()));
     }

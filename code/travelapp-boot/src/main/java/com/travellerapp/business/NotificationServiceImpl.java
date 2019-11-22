@@ -3,15 +3,17 @@ package com.travellerapp.business;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import com.travellerapp.domain.Destination;
@@ -60,12 +62,25 @@ public class NotificationServiceImpl implements NotificationService{
 	@Override
 	public List<Notification> getNotificationByDate(String from, String to) throws ParseException {
 		List<Notification> notification = new ArrayList<Notification>();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-		Date fromDate = formatter.parse(from);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date fromDate =removeTime(new Date());
+		LocalDateTime localDateTime = fromDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+		localDateTime = localDateTime.plusDays(2);
+		Date currentDateTwoDays = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 		Date toDate = formatter.parse(to);
-		notification = notificationRepo.getNotificationByDate(fromDate,toDate);
+		notification = notificationRepo.getNotificationByDate(fromDate,currentDateTwoDays);
 		return notification;
 	}
+	
+	public static Date removeTime(Date date) {    
+        Calendar cal = Calendar.getInstance();  
+        cal.setTime(date);  
+        cal.set(Calendar.HOUR_OF_DAY, 0);  
+        cal.set(Calendar.MINUTE, 0);  
+        cal.set(Calendar.SECOND, 0);  
+        cal.set(Calendar.MILLISECOND, 0);  
+        return cal.getTime(); 
+    }
 	
 	@Override
 	public void deleteAllNotifications(){
