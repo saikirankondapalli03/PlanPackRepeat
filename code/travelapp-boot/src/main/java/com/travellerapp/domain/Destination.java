@@ -31,7 +31,14 @@ public class Destination {
 	private String latitude;
 	private String longitude;
 	private boolean isNotified;
+	private String source;
 	
+	public String getSource() {
+		return source;
+	}
+	public void setSource(String source) {
+		this.source = source;
+	}
 	public boolean isNotified() {
 		return isNotified;
 	}
