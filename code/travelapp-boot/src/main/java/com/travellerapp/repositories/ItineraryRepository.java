@@ -11,6 +11,7 @@ import com.travellerapp.domain.Itinerary;
 public interface ItineraryRepository extends MongoRepository<Itinerary, String> {
 
 	Itinerary findItineraryBy_id(ObjectId _id);
+	
 	@Query("{ 'email' : { '$regex' : ?0 , $options: 'i'}}")
 	Itinerary findItineraryByEmail(String email);
 }

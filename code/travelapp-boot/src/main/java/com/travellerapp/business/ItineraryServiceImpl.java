@@ -35,6 +35,13 @@ public class ItineraryServiceImpl implements ItineraryService{
 	public Itinerary getActiveItineraryByEmail(String email) {
 		return itineraryRepo.findItineraryByEmail(email);
 	}
+	
+	
+	@Override
+	public Itinerary getActiveItineraryById(String Id) {
+		return itineraryRepo.findItineraryBy_id(new ObjectId(Id));
+	}
+
 
 	@Override
 	public Itinerary createItinerary(Itinerary itinerary) {

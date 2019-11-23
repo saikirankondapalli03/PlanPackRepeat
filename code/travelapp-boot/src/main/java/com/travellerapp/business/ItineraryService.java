@@ -15,4 +15,5 @@ public interface ItineraryService {
 	Itinerary updateItinerary(ObjectId id, Itinerary itinerary);
 	void deleteItinerary(ObjectId id);
 	void deleteDestinationFromItinerary(String email,List<String> destinationIds);
+	Itinerary getActiveItineraryById(String Id);
 }

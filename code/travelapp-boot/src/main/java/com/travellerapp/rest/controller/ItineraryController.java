@@ -64,6 +64,18 @@ public class ItineraryController
     	}
 	}
     
+    
+    @GetMapping(path="/getItineraryById/{Id}", produces = "application/json")
+    public ResponseEntity<Itinerary> getActiveItineraryById(@PathVariable String Id) 
+    {
+    	Itinerary itr= itineraryService.getActiveItineraryById(Id);
+    	if(itr !=null) {
+    		return ResponseEntity.status(HttpStatus.OK).body(itr);
+    	}else {
+    		return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    	}
+	}
+    
     @RequestMapping(value = "/createItinerary", method = RequestMethod.POST)
     public ResponseEntity<Itinerary> createItineraryWithDestinations(@Valid @RequestBody Itinerary itr) 
 	{
