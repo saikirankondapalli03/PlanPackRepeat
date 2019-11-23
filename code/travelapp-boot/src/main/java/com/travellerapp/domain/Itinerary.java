@@ -19,6 +19,7 @@ public class Itinerary {
 	private ObjectId _id;
 	private Date startDate;
 	private Date endDate;
+	private String itineraryName;	
 	private String email;
 	private boolean isPublic;
 	private boolean isActive;
@@ -28,6 +29,16 @@ public class Itinerary {
 	private Timestamp updatedTs;
 	private Timestamp createdBy;
 	private Timestamp updatedBy;
+	
+	public String getItineraryName() {
+		return itineraryName;
+	}
+
+	public void setItineraryName(String itineraryName) {
+		this.itineraryName = itineraryName;
+	}
+
+	
 	
 	@DBRef
 	private List<Destination> destinations;

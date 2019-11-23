@@ -25,6 +25,14 @@ public class Notification
 	private Date updatedTs;
 	private String createdBy;
 	private String updatedBy;
+	private boolean isNotified;
+	
+	public boolean isNotified() {
+		return isNotified;
+	}
+	public void setNotified(boolean isNotified) {
+		this.isNotified = isNotified;
+	}
 	public ObjectId get_id() {
 		return _id;
 	}

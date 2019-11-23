@@ -30,11 +30,11 @@ public class EmailService {
                 MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
                 StandardCharsets.UTF_8.name());
 
-        helper.addAttachment("logo.png", new ClassPathResource("memorynotfound-logo.png"));
+        helper.addAttachment("logo.png", new ClassPathResource("ppk.png"));
 
         Context context = new Context();
         context.setVariables(mail.getModel());
-        String html = templateEngine.process("email-template.html", context);
+        String html = templateEngine.process("email-check.html", context);
 
         helper.setTo(mail.getTo());
         helper.setText(html, true);

@@ -8,12 +8,15 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Document(collection = "destination")
 public class Destination {
 	@Id
 	private ObjectId _id;
 	private String destName;
 	private String address;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date plannedTime;
 	private String status;
 	private String imgUrl;
@@ -27,7 +30,14 @@ public class Destination {
 	private Timestamp updatedBy;
 	private String latitude;
 	private String longitude;
+	private boolean isNotified;
 	
+	public boolean isNotified() {
+		return isNotified;
+	}
+	public void setNotified(boolean isNotified) {
+		this.isNotified = isNotified;
+	}
 	public String getLatitude() {
 		return latitude;
 	}

@@ -17,7 +17,7 @@ public interface NotificationRepository extends MongoRepository<Notification, St
 	
 	Notification findNotificationByemailId(String email);
 	
-	@Query("{'plannedTime':{ $gte: ?0, $lte: ?1}}}")                 
-	public List<Notification> getNotificationByDate(Date from,Date To); 
+	@Query("{'plannedTime':{ $gte: ?0, $lte: ?1},'isNotified':false}")                 
+	public List<Notification> getNotificationByDate(Date from,Date To, boolean isNotified); 
 
 }

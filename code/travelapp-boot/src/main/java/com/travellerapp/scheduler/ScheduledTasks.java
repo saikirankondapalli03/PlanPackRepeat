@@ -1,17 +1,25 @@
 package com.travellerapp.scheduler;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-
+import java.io.IOException;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
+import javax.mail.MessagingException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import com.travellerapp.business.NotificationService;
+
 @Component
 public class ScheduledTasks {
-
+	@Autowired
+	private NotificationService notificationService;
     private static final Logger LOGGER = LoggerFactory.getLogger(ScheduledTasks.class);
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
@@ -53,9 +61,13 @@ public class ScheduledTasks {
      * MINUTE / HOUR / DAY OF MONTH / MONTH / DAY OF WEEK
      *
      * For more cron info https://www.pantz.org/software/cron/croninfo.html
+     * @throws IOException 
+     * @throws MessagingException 
+     * @throws ParseException 
      */
-    @Scheduled(cron = "0 * * * * ?") // Every 1 minute
-    public void scheduleTaskWithCronExpression() {
-        LOGGER.info("Fixed Rate Task with Initial Delay: Execution Time {}", dateTimeFormatter.format(LocalDateTime.now()));
+    @Scheduled(cron = "2 * * * * *") // Every 1 minute
+    public void scheduleTaskWithCronExpression() throws MessagingException, IOException, ParseException {
+    	notificationService.startNotifications();
+    	System.out.println("Logger");
     }
 }

@@ -1,13 +1,16 @@
 package com.travellerapp.rest.controller;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +24,7 @@ import com.travellerapp.domain.Notification;
 
 @RestController
 @RequestMapping(path = "/notification")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class NotificationController 
 {
 	@Autowired
@@ -56,7 +60,17 @@ public class NotificationController
     	}
 	}
     
-
+    
+    @GetMapping(path="/getNotificationDates", produces = "application/json")
+    public ResponseEntity<String> startNotifications() throws ParseException, MessagingException, IOException
+    {
+    	ResponseEntity<String> response= new ResponseEntity<String>(HttpStatus.OK);
+    	notificationService.startNotifications();;
+    	return response;
+	}
+    
+    
+    
     @RequestMapping(value = "/saveByDest", method = RequestMethod.PUT)
     public ResponseEntity<String> updateNotification(@Valid @RequestBody List<Destination> destinations) 
 	{

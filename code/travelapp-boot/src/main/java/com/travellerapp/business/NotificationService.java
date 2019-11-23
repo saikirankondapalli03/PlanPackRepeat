@@ -1,7 +1,10 @@
 package com.travellerapp.business;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import org.bson.types.ObjectId;
 
@@ -18,4 +21,9 @@ public interface NotificationService {
 	Notification getNotificationByEmail(String email);
 	List<Notification> getNotificationByDate(String from, String to) throws ParseException;
 	void deleteNotification(ObjectId id);
+	void sendEmail(String toEmailId)throws MessagingException, IOException;
+	void startNotifications()throws MessagingException, IOException, ParseException;
+	List<Destination>	getDestinationByDate(String from, String to) throws ParseException ;
+	public void sendEmailScheduler(String emailId, String itineraryName, String firstName , List<Destination> destinations) throws MessagingException, IOException;
 }
+

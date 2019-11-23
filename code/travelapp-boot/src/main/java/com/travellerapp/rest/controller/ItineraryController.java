@@ -12,6 +12,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,16 +21,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.travellerapp.business.ItineraryServiceImpl;
+import com.travellerapp.business.NotificationService;
 import com.travellerapp.domain.Itinerary;
 import com.travellerapp.email.EmailService;
 import com.travellerapp.email.Mail;
 
 @RestController
 @RequestMapping(path = "/itinerary")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ItineraryController 
 {
 	@Autowired
-    private EmailService emailService;
+	private NotificationService nfs;
+	
 	
 	@Autowired
 	private ItineraryServiceImpl itineraryService;
@@ -40,21 +44,10 @@ public class ItineraryController
        return itineraryService.listAllItineraries();
     }
 
-	@GetMapping(path = "/getEmail", produces = "application/json")
-	public ResponseEntity<String> sendEmail() throws MessagingException, IOException {
+	@GetMapping(path = "/getEmail/{email}", produces = "application/json")
+	public ResponseEntity<String> sendEmail(@PathVariable String email) throws MessagingException, IOException {
 		ResponseEntity<String> response = new ResponseEntity<String>(HttpStatus.OK);
-		Mail mail = new Mail();
-		mail.setFrom("planpackrepeat@gmail.com");
-		mail.setTo("saikirankondapalli03@gmail.com");
-		mail.setSubject("Sending Email with Thymeleaf HTML Template Example");
-
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("name", "Memorynotfound.com");
-		model.put("location", "Belgium");
-		model.put("signature", "http://memorynotfound.com");
-		mail.setModel(model);
-
-		emailService.sendSimpleMessage(mail);
+		nfs.sendEmail(email);
 		return response;
 	}
 	   
