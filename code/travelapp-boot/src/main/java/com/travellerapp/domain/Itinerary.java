@@ -24,12 +24,22 @@ public class Itinerary {
 	private boolean isPublic;
 	private boolean isActive;
 	private String status;
+	private int likes;
 	private BigDecimal budgetId;
 	private Timestamp createdTs;
 	private Timestamp updatedTs;
 	private Timestamp createdBy;
 	private Timestamp updatedBy;
 	
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
 	public String getItineraryName() {
 		return itineraryName;
 	}
