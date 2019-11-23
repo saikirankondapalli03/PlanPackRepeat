@@ -10,7 +10,7 @@ cache:
 script:
   - echo $TRAVIS_BUILD_DIR
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - mkdir build
+  - mkdir $TRAVIS_BUILD_DIR/build
   - cp target/travelapp-0.0.1-SNAPSHOT.jar $TRAVIS_BUILD_DIR/build/travelapp.jar  
 
 deploy:
