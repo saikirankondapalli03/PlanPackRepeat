@@ -11,14 +11,14 @@ script:
   - echo $TRAVIS_BUILD_DIR
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - mkdir build
-  - cp target/travelapp-0.0.1-SNAPSHOT.jar build/travelapp.jar  
+  - cp target/travelapp-0.0.1-SNAPSHOT.jar $TRAVIS_BUILD_DIR/build/travelapp.jar  
 
 deploy:
    provider: elasticbeanstalk
    skip_cleanup: true
    app: travelapp
    env: Travelapp-env-1
-   zip_file: build/travelapp.jar
+   zip_file: $TRAVIS_BUILD_DIR/build/travelapp.jar
    bucket_name: elasticbeanstalk-us-east-1-414657016646
    region: us-east-1
    access_key_id:
