@@ -10,8 +10,10 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "Itinerary")
-public class Itinerary {
-	public Itinerary() {
+public class Itinerary 
+{
+	public Itinerary() 
+	{
 
 	}
 
@@ -30,7 +32,23 @@ public class Itinerary {
 	private Timestamp updatedTs;
 	private Timestamp createdBy;
 	private Timestamp updatedBy;
-	
+	private List<String> pictures; 
+	private String visibilityKey;
+	public List<String> getPictures() {
+		return pictures;
+	}
+
+	public void setPictures(List<String> pictures) {
+		this.pictures = pictures;
+	}
+
+	public String getVisibilityKey() {
+		return visibilityKey;
+	}
+
+	public void setVisibilityKey(String visibilityKey) {
+		this.visibilityKey = visibilityKey;
+	}
 
 	public int getLikes() {
 		return likes;
