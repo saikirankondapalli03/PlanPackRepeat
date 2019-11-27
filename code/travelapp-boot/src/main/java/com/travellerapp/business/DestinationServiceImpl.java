@@ -1,13 +1,17 @@
 package com.travellerapp.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.travellerapp.domain.Destination;
+import com.travellerapp.domain.Itinerary;
 import com.travellerapp.repositories.DestinationRepository;
+import com.travellerapp.repositories.ItineraryRepository;
 
 
 @Service
@@ -15,6 +19,9 @@ public class DestinationServiceImpl implements DestinationService{
 
 	@Autowired
 	private DestinationRepository destRepo;
+	
+	@Autowired
+	private ItineraryRepository itineraryRepo;
 	
 	@Override
 	public Destination getDestinationById(String email) {
@@ -28,7 +35,18 @@ public class DestinationServiceImpl implements DestinationService{
 	
 	@Override
 	public void deleteDestination(ObjectId id) {
-		destRepo.delete(destRepo.findDestinationBy_id(id));
+		Destination dest=destRepo.findDestinationBy_id(id);
+		Itinerary it= itineraryRepo.findItineraryBy_id(new ObjectId(dest.getId()));
+		List<Destination> list =new ArrayList<Destination>();
+		it.getDestinations().stream().filter(x->x.getId().equalsIgnoreCase(dest.getId())).forEach(y->{
+			list.add(y);
+		});
+		if(!CollectionUtils.isEmpty(list)) 
+		{
+			it.setDestinations(list);
+			itineraryRepo.save(it);
+		}
+		destRepo.delete(dest);
 	}
 	
 	
