@@ -26,6 +26,7 @@ import org.springframework.ui.ModelMap;
 import com.travellerapp.domain.Destination;
 import com.travellerapp.domain.Itinerary;
 import com.travellerapp.domain.Notification;
+import com.travellerapp.domain.User;
 import com.travellerapp.email.EmailService;
 import com.travellerapp.email.Mail;
 import com.travellerapp.repositories.DestinationRepository;
@@ -197,17 +198,24 @@ public class NotificationServiceImpl implements NotificationService{
 			Itinerary Itinerary= itiRepo.findItineraryBy_id(new ObjectId(x.getKey()));
 			String name=Itinerary.getItineraryName();
 			String emailId=Itinerary.getEmail();
-			String firstName= userRepo.findUserByEmail(emailId).getFirstName();
-			List<Destination> iti_destinations= x.getValue();
-		 	try {
-				this.sendEmailScheduler(emailId, name, firstName, iti_destinations);
-			} catch (MessagingException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			User user= userRepo.findUserByEmail(emailId);
+			if(user!=null) {
+				String firstName=user.getFirstName();
+				List<Destination> iti_destinations= x.getValue();
+			 	try {
+					this.sendEmailScheduler(emailId, name, firstName, iti_destinations);
+					System.out.println("email sent to  "+emailId+"whose Itinerary is"+ Itinerary.getId());
+				} catch (MessagingException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 	iti_destinations.stream().forEach(z-> z.setNotified(true));
+			 	destRepo.saveAll(iti_destinations);   
+			}else {
+				System.out.println("User with emailId is not found" + emailId);
 			}
-		 	iti_destinations.stream().forEach(z-> z.setNotified(true));
-		 	destRepo.saveAll(iti_destinations);
-		});
+			
+					});
 	}
 	
 	

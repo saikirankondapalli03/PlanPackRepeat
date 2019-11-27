@@ -1,9 +1,7 @@
 package com.travellerapp.rest.controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
@@ -23,8 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.travellerapp.business.ItineraryServiceImpl;
 import com.travellerapp.business.NotificationService;
 import com.travellerapp.domain.Itinerary;
-import com.travellerapp.email.EmailService;
-import com.travellerapp.email.Mail;
 
 @RestController
 @RequestMapping(path = "/itinerary")
@@ -54,9 +50,9 @@ public class ItineraryController
        
        
     @GetMapping(path="/getItineraryByEmail/{email}", produces = "application/json")
-    public ResponseEntity<Itinerary> getActiveItineraryByEmail(@PathVariable String email) 
+    public ResponseEntity<List<Itinerary>> getActiveItineraryByEmail(@PathVariable String email) 
     {
-    	Itinerary itr= itineraryService.getActiveItineraryByEmail(email);
+    	List<Itinerary> itr= itineraryService.getActiveItineraryByEmail(email);
     	if(itr !=null) {
     		return ResponseEntity.status(HttpStatus.OK).body(itr);
     	}else {

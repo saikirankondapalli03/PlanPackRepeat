@@ -3,7 +3,6 @@ package com.travellerapp.business;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.catalina.filters.ExpiresFilter.XServletOutputStream;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,7 @@ public class ItineraryServiceImpl implements ItineraryService{
 	}
 	
 	@Override
-	public Itinerary getActiveItineraryByEmail(String email) {
+	public List<Itinerary> getActiveItineraryByEmail(String email) {
 		return itineraryRepo.findItineraryByEmail(email);
 	}
 	
@@ -46,16 +45,13 @@ public class ItineraryServiceImpl implements ItineraryService{
 	@Override
 	public Itinerary createItinerary(Itinerary itinerary) {
 		Itinerary copyObj= itinerary;
-		Itinerary currentIt=itineraryRepo.findItineraryByEmail(itinerary.getEmail());
+		//Itinerary currentIt=itineraryRepo.findItineraryByEmail(itinerary.getEmail());
 		itinerary.getDestinations().forEach(x->{
 			x.setStatus(ItineraryStatus.ABOUT_TO_TRAVEL.getValue());
 			x.setEmailId(copyObj.getEmail());
 			Destination des= destRepo.save(x);
 			x= des; 
 		});
-		if(currentIt!= null) {
-			return updateItinerary(new ObjectId(currentIt.getId()), itinerary);
-		}
 		itinerary.setStatus(ItineraryStatus.ABOUT_TO_TRAVEL.getValue());
 		itinerary= itineraryRepo.save(itinerary);
 		final String itineraryId= itinerary.getId();
@@ -90,7 +86,7 @@ public class ItineraryServiceImpl implements ItineraryService{
 	@Override 
 	public void deleteDestinationFromItinerary(String email,List<String> destinationIds) {
 		//get current itinerary based on email 
-		Itinerary itr= getActiveItineraryByEmail(email);
+		Itinerary itr= getActiveItineraryByEmail(email).get(0);
 		if(itr!=null)
 		{
 			List<Destination> destinations= itr.getDestinations();
