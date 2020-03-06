@@ -2,6 +2,8 @@ package com.travellerapp.domain;
 
 
 
+import java.util.List;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,7 +23,49 @@ public class User {
     
     private String email;
     
-    private String favtDest;
+    private String profileImageUrl;
+    
+    private String biography;
+    
+    private List<SocialMediaModel> smdetails;
+    
+    public List<SocialMediaModel> getSmdetails() {
+		return smdetails;
+	}
+
+	public void setSmdetails(List<SocialMediaModel> smdetails) {
+		this.smdetails = smdetails;
+	}
+
+	public String getBiography() {
+		return biography;
+	}
+
+	public void setBiography(String biography) {
+		this.biography = biography;
+	}
+
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	private String mobileNumber;
+    
+    
+    
+    public String getProfileImageUrl() {
+		return profileImageUrl;
+	}
+
+	public void setProfileImageUrl(String profileImageUrl) {
+		this.profileImageUrl = profileImageUrl;
+	}
+
+	private String favtDest;
 
     public String getFavtDest() {
 		return favtDest;

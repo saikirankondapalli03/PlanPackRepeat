@@ -48,8 +48,8 @@ public class UserController
     @GetMapping(path="/getAllUsers", produces = "application/json")
     public List<User> getAllUsers() 
     {
-    	
-       return userService.listAllUsers();
+       List<User> users=userService.listAllUsers();
+       return users;
     }
 
     
@@ -75,7 +75,8 @@ public class UserController
     @RequestMapping(value = "/createuser", method = RequestMethod.POST)
     public ResponseEntity<User> createUserWithDetails(@Valid @RequestBody User user) 
 	{
-    	return ResponseEntity.ok().body(userService.createUser(user));
+    	User savedUser=userService.createUser(user);
+    	return ResponseEntity.ok().body(savedUser);
 	}
     
     

@@ -14,4 +14,8 @@ public interface UserRepository extends MongoRepository<User, String> {
 	
 	@Query("{ 'email' : { '$regex' : ?0 , $options: 'i'}}")
 	User findUserByEmail(String email);
+	
+	// *find => Model(in this case  it is User)  => By => attribute
+	@Query("{ 'lastName' : { '$regex' : ?0 , $options: 'i'}}")
+	User findUserByLastName(String lastName);
 }

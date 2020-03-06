@@ -1,5 +1,6 @@
 package com.travellerapp.business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -18,7 +19,8 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public List<User> listAllUsers() {
-		return (List<User>) userRepository.findAll();
+		List<User> users=   userRepository.findAll();
+		return users;
 	}
 	
 	@Override
@@ -34,7 +36,8 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User createUser(User user) {
-		return userRepository.save(user);
+		User savedUser=userRepository.save(user);//execute insert scripts in db
+		return savedUser;
 	}
 	
 	
