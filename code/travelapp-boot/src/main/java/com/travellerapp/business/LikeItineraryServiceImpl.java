@@ -27,10 +27,13 @@ public class LikeItineraryServiceImpl implements LikeItineraryService{
 			likeItineraryRepo.save(l);
 		}
 		else {
+			
 			List<String> lists= like.getListOfUsers();
-			lists.add(email);
-			like.setListOfUsers(lists);
-			likeItineraryRepo.save(like);
+			if(!lists.contains(email)) {
+				lists.add(email);
+				like.setListOfUsers(lists);
+				likeItineraryRepo.save(like);	
+			}
 		}
 	}
 	
