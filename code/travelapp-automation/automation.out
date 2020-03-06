@@ -1,0 +1,9 @@
+2020-03-05 20:03:848 INFO  WaitHelper:21 - waiting for element visibilityOf..
+2020-03-05 20:03:131 INFO  WaitHelper:24 - element is visible..
+2020-03-05 20:03:630 INFO  WaitHelper:21 - waiting for element visibilityOf..
+2020-03-05 20:03:814 INFO  WaitHelper:24 - element is visible..
+2020-03-05 20:03:260 INFO  ServiceHooks:43 - Login into the application with valid credentials is pass
+2020-03-05 20:03:834 INFO  ServiceHooks:43 - Add two numbers -2 & 3 is pass
+2020-03-05 20:03:906 INFO  ServiceHooks:43 - Add two numbers 10 & 15 is pass
+2020-03-05 20:03:525 INFO  ServiceHooks:43 - Add two numbers 99 & -99 is pass
+2020-03-05 20:03:830 INFO  ServiceHooks:43 - Add two numbers -1 & -10 is pass
