@@ -34,6 +34,15 @@ public class Itinerary
 	private Timestamp updatedBy;
 	private List<String> pictures; 
 	private String visibilityKey;
+	private LikeItinerary likesDetails;
+	public LikeItinerary getLikesDetails() {
+		return likesDetails;
+	}
+
+	public void setLikesDetails(LikeItinerary likesDetails) {
+		this.likesDetails = likesDetails;
+	}
+
 	public List<String> getPictures() {
 		return pictures;
 	}

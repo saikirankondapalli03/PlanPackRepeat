@@ -11,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 import com.travellerapp.cdd.ItineraryStatus;
 import com.travellerapp.domain.Destination;
 import com.travellerapp.domain.Itinerary;
+import com.travellerapp.domain.LikeItinerary;
 import com.travellerapp.repositories.DestinationRepository;
 import com.travellerapp.repositories.ItineraryRepository;
 
@@ -20,6 +21,10 @@ public class ItineraryServiceImpl implements ItineraryService{
 
 	@Autowired
 	private ItineraryRepository itineraryRepo;
+	
+	@Autowired
+	private LikeItineraryServiceImpl likeRepo;
+	
 	
 	@Autowired
 	private DestinationRepository destRepo;
@@ -38,7 +43,10 @@ public class ItineraryServiceImpl implements ItineraryService{
 	
 	@Override
 	public Itinerary getActiveItineraryById(String Id) {
-		return itineraryRepo.findItineraryBy_id(new ObjectId(Id));
+		Itinerary itinerary =itineraryRepo.findItineraryBy_id(new ObjectId(Id));
+		LikeItinerary  likesDetails=  likeRepo.retrieveLikeItiByItineraryId(Id);
+		itinerary.setLikesDetails(likesDetails);
+		return itinerary;
 	}
 
 
