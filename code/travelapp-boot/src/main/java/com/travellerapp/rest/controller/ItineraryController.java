@@ -1,5 +1,6 @@
 package com.travellerapp.rest.controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -8,7 +9,10 @@ import javax.validation.Valid;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +38,17 @@ public class ItineraryController
 	@Autowired
 	private ItineraryServiceImpl itineraryService;
 	 
+	@RequestMapping(value = "/pdfreport", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> generateItineraryReport() throws IOException {
+		ByteArrayInputStream bis= itineraryService.generateAndDownloadItineararyReport();
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "inline; filename=itinerary_report.pdf");
+
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
+				.body(new InputStreamResource(bis));
+	}
+	
+	
 	@GetMapping(path="/getAllItineraries", produces = "application/json")
     public List<Itinerary> getAllItineraries() 
     {

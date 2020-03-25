@@ -1,5 +1,6 @@
 package com.travellerapp.business;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 import org.bson.types.ObjectId;
@@ -16,4 +17,6 @@ public interface ItineraryService {
 	void deleteItinerary(ObjectId id);
 	void deleteDestinationFromItinerary(String email,List<String> destinationIds);
 	Itinerary getActiveItineraryById(String Id);
+	ByteArrayInputStream generateAndDownloadItineararyReport(); 
+	
 }

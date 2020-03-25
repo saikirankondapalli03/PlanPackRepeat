@@ -1,5 +1,6 @@
 package com.travellerapp.business;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,6 +15,7 @@ import com.travellerapp.domain.Itinerary;
 import com.travellerapp.domain.LikeItinerary;
 import com.travellerapp.repositories.DestinationRepository;
 import com.travellerapp.repositories.ItineraryRepository;
+import com.travellerapp.util.PdfReportUtil;
 
 
 @Service
@@ -116,6 +118,13 @@ public class ItineraryServiceImpl implements ItineraryService{
 		}
 		
 		
+	}
+
+	@Override
+	public ByteArrayInputStream generateAndDownloadItineararyReport() {
+		List<Itinerary> list = listAllItineraries();
+		ByteArrayInputStream br= PdfReportUtil.citiesReport(list);
+		return br;
 	}
 	
 }
