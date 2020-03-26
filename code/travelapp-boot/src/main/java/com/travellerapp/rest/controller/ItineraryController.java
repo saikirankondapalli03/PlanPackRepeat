@@ -1,6 +1,5 @@
 package com.travellerapp.rest.controller;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.travellerapp.business.ItineraryServiceImpl;
 import com.travellerapp.business.NotificationService;
 import com.travellerapp.domain.Itinerary;
+import com.travellerapp.domain.ReportOutputEmailWrapper;
 
 @RestController
 @RequestMapping(path = "/itinerary")
@@ -34,18 +34,31 @@ public class ItineraryController
 	@Autowired
 	private NotificationService nfs;
 	
-	
 	@Autowired
 	private ItineraryServiceImpl itineraryService;
 	 
-	@RequestMapping(value = "/pdfreport", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
-	public ResponseEntity<InputStreamResource> generateItineraryReport() throws IOException {
-		ByteArrayInputStream bis= itineraryService.generateAndDownloadItineararyReport();
+	@RequestMapping(value = "/getAllItinerariesReport", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> getAllItinerariesReport() throws IOException {
+		ReportOutputEmailWrapper bis= itineraryService.getAllItinerariesReport();
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Disposition", "inline; filename=itinerary_report.pdf");
+		headers.add("Content-Disposition", "inline; filename="+bis.getKey()+".pdf");
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(new InputStreamResource(bis.getBs()));
+	}
 
-		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF)
-				.body(new InputStreamResource(bis));
+	@RequestMapping(value = "/getItineraryByIdReport/{Id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> getItineraryByIdReport(@PathVariable String Id) throws IOException {
+		ReportOutputEmailWrapper bis= itineraryService.getItineraryByIdReport(Id);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "inline; filename="+bis.getKey()+".pdf");
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(new InputStreamResource(bis.getBs()));
+	}
+	
+	@RequestMapping(value = "/getItineraryByEmailReport/{email}", method = RequestMethod.GET, produces = MediaType.APPLICATION_PDF_VALUE)
+	public ResponseEntity<InputStreamResource> getItineraryByEmailReport(@PathVariable String email) throws IOException {
+		ReportOutputEmailWrapper bis= itineraryService.getItineraryByEmailReport(email);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "inline; filename="+bis.getKey()+".pdf");
+		return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(new InputStreamResource(bis.getBs()));
 	}
 	
 	

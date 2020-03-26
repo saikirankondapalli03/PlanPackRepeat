@@ -6,6 +6,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 
 import com.travellerapp.domain.Itinerary;
+import com.travellerapp.domain.ReportOutputEmailWrapper;
 
 
 public interface ItineraryService {
@@ -17,6 +18,10 @@ public interface ItineraryService {
 	void deleteItinerary(ObjectId id);
 	void deleteDestinationFromItinerary(String email,List<String> destinationIds);
 	Itinerary getActiveItineraryById(String Id);
-	ByteArrayInputStream generateAndDownloadItineararyReport(); 
+	ReportOutputEmailWrapper getAllItinerariesReport(); 
+	ReportOutputEmailWrapper getItineraryByEmailReport(String email);
+	ReportOutputEmailWrapper getItineraryByIdReport(String id);
+	
+	
 	
 }

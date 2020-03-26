@@ -1,6 +1,9 @@
 package com.travellerapp.business;
 
 import java.io.ByteArrayInputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +16,7 @@ import com.travellerapp.cdd.ItineraryStatus;
 import com.travellerapp.domain.Destination;
 import com.travellerapp.domain.Itinerary;
 import com.travellerapp.domain.LikeItinerary;
+import com.travellerapp.domain.ReportOutputEmailWrapper;
 import com.travellerapp.repositories.DestinationRepository;
 import com.travellerapp.repositories.ItineraryRepository;
 import com.travellerapp.util.PdfReportUtil;
@@ -121,10 +125,46 @@ public class ItineraryServiceImpl implements ItineraryService{
 	}
 
 	@Override
-	public ByteArrayInputStream generateAndDownloadItineararyReport() {
+	public ReportOutputEmailWrapper getAllItinerariesReport() {
+		ReportOutputEmailWrapper s= new ReportOutputEmailWrapper();
 		List<Itinerary> list = listAllItineraries();
 		ByteArrayInputStream br= PdfReportUtil.citiesReport(list);
-		return br;
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		String fullValue="All_Itineraries"+ "_" + dtf.format(now);
+		s.setKey(fullValue);
+		s.setBs(br);
+		return s;
 	}
+	
+	@Override
+	public ReportOutputEmailWrapper getItineraryByIdReport(String id) {
+		ReportOutputEmailWrapper s= new ReportOutputEmailWrapper();
+		Itinerary itinerary= getActiveItineraryById(id);
+		List<Itinerary> list= new ArrayList<Itinerary>();
+		list.add(itinerary);
+		ByteArrayInputStream br= PdfReportUtil.citiesReport(list);
+		s.setBs(br);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		String fullValue="id"+ "_" + dtf.format(now);
+		s.setKey(fullValue);
+		return s;
+	}
+	
+	
+	@Override
+	public ReportOutputEmailWrapper getItineraryByEmailReport(String email) {
+		ReportOutputEmailWrapper s= new ReportOutputEmailWrapper();
+		List<Itinerary> list= getActiveItineraryByEmail(email);
+		ByteArrayInputStream br= PdfReportUtil.citiesReport(list);
+		s.setBs(br);
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		LocalDateTime now = LocalDateTime.now();
+		String fullValue=email+ "_" + dtf.format(now);
+		s.setKey(fullValue);
+		return s;
+	}
+	
 	
 }
