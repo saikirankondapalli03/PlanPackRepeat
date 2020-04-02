@@ -36,5 +36,13 @@ public class LikeItineraryController {
 		lis.savelikeItinerary(email,itineraryId);
 		return response;
 	}
+	
+	
+	@RequestMapping(value = "/saveUserUnLiking/{email}/{itineraryId}", method = RequestMethod.POST)
+	public ResponseEntity<String> UnlikeNotification(String email,String itineraryId) {
+		ResponseEntity<String> response = new ResponseEntity<String>(HttpStatus.OK);
+		lis.saveunLikeItinerary(email,itineraryId);
+		return response;
+	}
 
 }

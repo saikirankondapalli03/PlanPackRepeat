@@ -42,4 +42,16 @@ public class LikeItineraryServiceImpl implements LikeItineraryService{
 		LikeItinerary l=  likeItineraryRepo.findLikeItineraryByItineraryId(itineraryId);
 		return l;
 	}
+
+
+	@Override
+	public void saveunLikeItinerary(String email, String itineraryId) {
+		// TODO Auto-generated method stub
+		LikeItinerary like=retrieveLikeItiByItineraryId(itineraryId);
+		like.setItineraryId(itineraryId);
+		List<String> list= like.getListOfUsers();
+		list.remove(email);
+		like.setListOfUsers(list);
+		likeItineraryRepo.save(like);
+	}
 }

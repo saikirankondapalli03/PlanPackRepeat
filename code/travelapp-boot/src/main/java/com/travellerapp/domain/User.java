@@ -27,7 +27,18 @@ public class User {
     
     private String biography;
     
-    private List<SocialMediaModel> smdetails;
+    private boolean isAdminUser; 
+    
+    
+    public boolean isAdminUser() {
+		return isAdminUser;
+	}
+
+	public void setAdminUser(boolean isAdminUser) {
+		this.isAdminUser = isAdminUser;
+	}
+
+	private List<SocialMediaModel> smdetails;
     
     public List<SocialMediaModel> getSmdetails() {
 		return smdetails;
