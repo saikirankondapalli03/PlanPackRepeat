@@ -38,7 +38,13 @@ public class ItineraryServiceImpl implements ItineraryService{
 	
 	@Override
 	public List<Itinerary> listAllItineraries() {
-		return (List<Itinerary>) itineraryRepo.findAll();
+		List<Itinerary> list = (List<Itinerary>) itineraryRepo.findAll();
+		list.stream().forEach(x -> {
+				LikeItinerary lk = likeRepo.retrieveLikeItiByItineraryId(x.getId());
+					x.setLikesDetails(lk);
+			
+		});
+		return list;
 	}
 	
 	@Override
