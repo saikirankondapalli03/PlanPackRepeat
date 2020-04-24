@@ -46,12 +46,19 @@ public class ItineraryServiceImpl implements ItineraryService{
 		});
 		return list;
 	}
-	
+
 	@Override
 	public List<Itinerary> getActiveItineraryByEmail(String email) {
-		return itineraryRepo.findItineraryByEmail(email);
-	}
-	
+		List<Itinerary> list = itineraryRepo.findItineraryByEmail(email);
+
+		list.stream().forEach(x -> {
+			LikeItinerary lk = likeRepo.retrieveLikeItiByItineraryId(x.getId());
+			x.setLikesDetails(lk);
+
+		});
+		return list;
+
+	}	
 	
 	@Override
 	public Itinerary getActiveItineraryById(String Id) {
