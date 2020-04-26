@@ -1,0 +1,16 @@
+applications:
+- name: travelapp-boot
+  disk_quota: 1G
+  instances: 3
+  memory: 256M
+# https://github.com/cloudfoundry/java-buildpack/issues/663
+  env:
+    JAVA_OPTS: '-XX:ReservedCodeCacheSize=32M -XX:MaxDirectMemorySize=32M'
+    JBP_CONFIG_OPEN_JDK_JRE: '[memory_calculator: {stack_threads: 30}]'  
+  path: target/travelapp-0.0.1-SNAPSHOT.jar
+  timeout: 120
+  routes:
+  - route: travelapp-boot.cfapps.io
+  buildpacks:
+  - https://github.com/cloudfoundry/java-buildpack.git
+  stack: cflinuxfs3
