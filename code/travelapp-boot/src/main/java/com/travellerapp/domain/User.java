@@ -2,10 +2,13 @@ package com.travellerapp.domain;
 
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="User")
@@ -28,6 +31,8 @@ public class User {
     private String biography;
     
     private boolean isAdminUser; 
+    @DBRef
+    private Set<Role> roles = new HashSet<>();
     
     
     public boolean isAdminUser() {
@@ -54,6 +59,14 @@ public class User {
 
 	public void setBiography(String biography) {
 		this.biography = biography;
+	}
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public String getMobileNumber() {

@@ -106,13 +106,13 @@ public class ItineraryController
     	return ResponseEntity.ok().body(itineraryService.createItinerary(itr));
 	}
     
-    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Itinerary updateItinerary(@PathVariable("id") ObjectId id,@Valid @RequestBody Itinerary itr) 
 	{
     	return itineraryService.updateItinerary(id,itr);
 	}
     
-	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteItinerary(@PathVariable ObjectId id) {
 		ResponseEntity<String> response= new ResponseEntity<String>(HttpStatus.OK);
 		itineraryService.deleteItinerary(id);

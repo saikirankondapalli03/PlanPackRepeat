@@ -7,6 +7,8 @@ server:
   
 app:
   name: TravellerApp
+  jwtSecret: PlanPackRepeatKey
+  jwtExpiryTimeInMs: 86400000
   
 spring:
   jackson:
@@ -31,6 +33,3 @@ spring:
             enable: true
     protocol: smtp
     test-connection: false
-  
-  
-    
