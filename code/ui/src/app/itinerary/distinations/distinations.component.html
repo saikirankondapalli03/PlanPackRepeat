@@ -1,0 +1,84 @@
+<!-- <form [formGroup]="itineraryInfoForm" (ngSubmit)="onSubmit()"> -->
+<form [formGroup]="itineraryDestinationsForm">
+    <div class="destinations-container">
+        <div class="form-container">
+            <div class="add-new-destination">
+            </div>
+
+            <div class="destinations">
+                <div class="nav-item dropdown" ngbDropdown>
+                    <button class="btn btn-success dropdown" ngbDropdownToggle><i class="fa fa-plus"
+                            aria-hidden="true"></i>
+                        Add Destination</button>
+                    <div class="dropdown-menu dropdown-menu-left" ngbDropdownMenu>
+                        <div class="dropdown-item cursor-pointer" (click)="openMapsDialog()"><i class="fa fa-map"
+                                aria-hidden="true"></i> Search Maps
+                        </div>
+                        <div class="dropdown-item cursor-pointer" (click)="addManualDestination()">Add Manually</div>
+                    </div>
+                </div>
+
+                <div *ngFor="let destinationObj of savedDestinations; let i = index" class="destination-form">
+                    <div class="title"><span>Destination {{ i + 1}}</span> &nbsp; <span
+                            (click)="removeDestination(i)"><i class="fa fa-trash cursor-pointer" aria-hidden="true"></i>
+                        </span></div>
+                    <br />
+                    <div class="form-group">
+                        <label for="nameInput">Name <span class="red">*</span>
+
+                        </label>
+                      <input #name type="text" class="form-control name long-field" formControlName="name"
+                             id="nameInput" ([ngModel])="destinationObj.name" (ngModelChange)="updateDestinationMetadata(destinationObj, 'name', name.value)" [value]="destinationObj.name"
+                             placeholder="Enter itinerary name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDateInput">Street Address <span class="red">*</span>
+
+                        </label>
+                      <input #streetAddress type="text" class="form-control address long-field"
+                             formControlName="streetAddress" id="startDateInput"
+                             [value]="destinationObj.streetAddress" ([ngModel])="destinationObj.streetAddress" (ngModelChange)="updateDestinationMetadata(destinationObj, 'streetAddress', streetAddress.value)"
+                             placeholder="Address" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endDateInput">Date <span class="red">*</span>
+
+                        </label>
+                      <input type="date" #dateFeild class="form-control date" formControlName="date" id="endDateInput"
+                             [ngModel]="destinationObj.date" (ngModelChange)="updateDestinationMetadata(destinationObj, 'date', dateFeild.value)" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Time <span class="red">*</span>
+                            <input type="time" #timeFeild class="form-control time" formControlName="time" id="endDateInput"
+                                [ngModel]="destinationObj.time" (ngModelChange)="updateDestinationMetadata(destinationObj, 'time', timeFeild.value)" required>
+                        </label>
+                    </div>
+
+                    <div class="form-group" *ngIf="isAdminUser">
+                      <label>Budget <span class="red">*</span></label>
+                      <input
+                        (input)="onBudgetChange($event.target.value, destinationObj)"
+                        type="number"
+                        required
+                        class="form-control time budget"
+                        [placeholder]="'Enter Budget'"
+                      />
+                    </div>
+
+                    <hr />
+
+                </div>
+
+            </div>
+            <button [routerLink]="'/itinerary/create-itinerary/info'" class="btn btn-primary submit previous">Previous</button>
+            <button [routerLink]="'/itinerary/create-itinerary/budget'" type="submit" class="btn btn-primary submit next pull-right" [disabled]="!isFormValid"
+                [ngClass]="{'disabled': !isFormValid}">Next</button>
+        </div>
+        <!-- </form> -->
+    </div>
+    </form>
+
+
+    <app-dialog [content]="'maps'" (openDialogEvent)="setDialogRef($event)"></app-dialog>

@@ -1,0 +1,28 @@
+.loading {
+  display: flex;
+  min-height: 500px;
+  align-items: center;
+  justify-content: center;
+  z-index: 110000;
+  position: absolute;
+  top: 20%;
+  left: 48%;
+}
+
+.loading-mask {
+  background-color: rgba(249,250,251,0.9);
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 11000;
+  height: 100%;
+  width: 100%;
+}
+
+.loading-message {
+  position: absolute;
+  margin-top: 70%;
+  font-size: 22px;
+  width: 350px;
+  text-align: center;
+}

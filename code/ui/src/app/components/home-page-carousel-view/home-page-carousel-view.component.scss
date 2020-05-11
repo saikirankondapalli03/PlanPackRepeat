@@ -1,0 +1,35 @@
+.fa-heart {
+    color: red;
+}
+
+.btn-success {
+    &.public {
+        background-color: #449d44;
+    }
+    &.private {
+        background-color: red;
+    }
+}
+
+.itinerary-container {
+    opacity: 0.4;
+}
+
+.public-tab, .private-tab {
+    width: 188px;
+    padding-left: 10%;
+    font-size: 20px;
+}
+
+li {
+    cursor: pointer;
+}
+
+.fa-heart {
+    &.public {
+        color: red;
+    }
+    &.private {
+        color: black;
+    }
+}

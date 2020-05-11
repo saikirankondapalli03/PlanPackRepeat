@@ -1,0 +1,21 @@
+a {
+  cursor: pointer;
+}
+
+h2 {
+  color: #9d9d9d !important;
+}
+
+.navbar-brand {
+  cursor: pointer;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.slogan {
+  display: block;
+  text-align: center;
+}

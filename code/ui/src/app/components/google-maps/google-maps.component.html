@@ -1,0 +1,42 @@
+<div class="form-group">
+  <label>Enter address</label>
+  <input type="text" class="form-control" (keydown.enter)="$event.preventDefault()"
+    placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="on" type="text" #search />
+</div>
+
+<div class="agm-map-container">
+  <agm-map
+    [latitude]="latitude"
+    [longitude]="longitude"
+    [zoom]="zoom"
+    [disableDoubleClickZoom]="true"
+    (mapRightClick)="selectLocation($event)"
+    (mapReady)="mapLoaded = true">
+
+    <agm-polyline
+      [clickable]="true"
+      [polylineDraggable]="true"
+      [editable]="true"
+      [visible]="true"
+      [strokeWeight]="3"
+      >
+        <ng-container *ngFor="let location of selectedMapCoordinates; let i = index">
+          <agm-marker
+            [latitude]="location.latitude"
+            [longitude]="location.longitude"
+            [markerDraggable]="true"
+            (dragEnd)="markerDragEnd($event)"
+            (markerRightClick)="removeLocation(location)">
+          </agm-marker>
+
+          <agm-polyline-point
+            [latitude]="location.latitude"
+            [longitude]="location.longitude">
+          </agm-polyline-point>
+        </ng-container>
+    </agm-polyline>
+
+  </agm-map>
+</div>
+
+<h5>Address: {{ address }}</h5>

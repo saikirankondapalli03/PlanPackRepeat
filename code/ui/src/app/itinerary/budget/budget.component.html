@@ -1,0 +1,48 @@
+<div class="budget-container">
+  <div class="budget">
+    <span *ngIf="userInfo?.adminUser" class="gray">Additional</span> Trip Budget:
+    <input
+      [ngModel]="tripBudget"
+      (ngModelChange)="updateBudget($event)"
+      type="number"
+      required
+      [placeholder]="'Enter the trip budget'"
+    />
+    $
+
+    <div class="photos-uploader">
+      Photos:
+      <app-uploader
+        (completedUploadEvent)="addPicturesSource($event)"
+      ></app-uploader>
+    </div>
+
+    <div class="photos-container row">
+      <ng-container *ngFor="let picture of itineraryObj?.photos">
+        <div class="col-md-6">
+          <img [src]="picture" />
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="navigation-footer row">
+        <div class="col-md-6 col-xs-12">
+          <button (click)="createItinerary()" class="btn btn-primary next">
+            Create Itinerary
+          </button>
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <button
+            class="btn btn-primary previous-button"
+            [routerLink]="'/itinerary/create-itinerary/destinations'"
+          >
+            Previous
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

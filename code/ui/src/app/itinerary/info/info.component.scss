@@ -1,0 +1,55 @@
+form {
+    margin-bottom: 40px;
+}
+
+.name {
+  width: 500px;
+
+  @media screen and (min-width: 375px) {
+    width: 100%;
+  }
+}
+
+.submit {
+    border-radius: 5px;
+}
+
+.next-btn {
+    position: relative;
+    left: 50%;
+    width: 90px;
+}
+
+.previous-btn {
+    // position: relative;
+    // right: 20%;
+    width: 90px;
+}
+
+.disabled {
+    background: grey;
+    border-color: grey;
+}
+
+.red {
+    color: red;
+}
+
+.visibility-container {
+    margin-left: 0;
+    margin-bottom: 50px;
+}
+
+.previous, .next {
+    width: 140px;
+    padding: 15px 30px !important;
+    margin-bottom: 100px;
+
+  @media screen and (max-width: 375px) {
+    margin-bottom: 30px;
+  }
+}
+
+.private-radio {
+    margin-top: 10px;
+}

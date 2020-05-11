@@ -1,0 +1,33 @@
+<div class="modal-backdrop fade in" *ngIf="googleDialogIsOpen"></div>
+<ng-container *ngIf="googleDialogIsOpen">
+<div #googleDialog class="modal fade bd-example-modal-xl" id="bootstrapDialog" tabindex="-1" role="dialog"
+  [ngStyle]="{'display': googleDialogIsOpen ? 'block' : 'none', 'opacity': 1}" aria-labelledby="myExtraLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="row">
+          <div class="col-md-4 col-xs-8">
+            <h3 class="modal-title" id="modal-basic-title">Search & Add</h3>
+          </div>
+          <div class="col-md-8 col-xs-4">
+            <button type="button" class="close" aria-label="Close" data-dismiss="modal"
+              (click)="googleDialogIsOpen=false">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-body">
+        <app-google-maps [dialogRef]="dialogRef"></app-google-maps>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger save-btn pull-left"
+          (click)="googleDialogIsOpen=false;">CANCEL</button>
+        <button type="button" class="btn btn-primary save-btn pull-right" (click)="saveMapsDestinations()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+</ng-container>

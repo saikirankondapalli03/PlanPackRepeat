@@ -1,0 +1,30 @@
+<div *ngIf="itineraryobj?.info" class="summary-container">
+    <div class="header">
+        <div class="title">Itinerary Summary</div>
+        <br />
+        <ng-container *ngIf="itineraryobj.info">
+            ------------------------------ INFO -------------------------------
+            <div *ngIf="itineraryobj.info.name" class="name">Name: <span>{{itineraryobj.info.name}}</span></div>
+            <div *ngIf="itineraryobj.info.startDate" class="date">Start Date: <span class="start">{{itineraryobj.info.startDate | date: "mediumDate"}}</span></div>
+            <div *ngIf="itineraryobj.info.endDate" class="date">End Date: <span class="end">{{itineraryobj.info.endDate | date: "mediumDate"}}</span></div>
+            <div *ngIf="itineraryobj.info.visiblity" class="visibility">Visibility: <span>{{itineraryobj.info.visiblity}}</span></div>
+
+            <div *ngIf="itineraryobj.destinations && itineraryobj.destinations.length > 0" class="row">
+            ---------------------- DESTINATIONS ------------------------  
+            <ng-container *ngFor="let destination of itineraryobj.destinations">
+                <div class="col-md-6 destination-container">
+                    <div *ngIf="destination.name" class="name">Name: <span>{{destination.name}}</span></div>
+                    <div *ngIf="destination.streetAddress" class="date">Street Address: <span class="start">{{destination.streetAddress}}</span></div>
+                    <div *ngIf="destination.date" class="date">Date: <span class="end">{{destination.date | date: "mediumDate"}}</span></div>
+                    <div *ngIf="destination.time" class="date">Time: <span>{{destination.time}}</span></div>
+                </div>
+            </ng-container>
+        </div>
+
+        <div *ngIf="itineraryobj.budget">
+                ---------------------- BUDGET ------------------------  
+                <div class="budget">Trip Budget: {{itineraryobj.budget}}</div>
+            </div>
+        </ng-container>
+    </div>
+</div>

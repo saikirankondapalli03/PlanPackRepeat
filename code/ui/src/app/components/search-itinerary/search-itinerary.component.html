@@ -1,0 +1,12 @@
+<div  class="navbar-header" style="margin-top:10%;">
+  <div class="navbar-brand">
+  <form  role="search">
+      <div class="input-group center mb-3">
+        <input [ngModel]="searchText" (ngModelChange)="doSomething($event)" class="form-control"  placeholder="Search Your Itinerary" name="srch-term" id="srch-term" />
+        <div class="input-group-btn" >
+          <button class="btn btn-secondary" type="submit"><small><i class="glyphicon glyphicon-search"></i></small></button>
+        </div>
+      </div>
+      </form>
+      </div>
+    </div>

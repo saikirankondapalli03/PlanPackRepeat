@@ -1,0 +1,179 @@
+/* .userImg {
+  border-radius: 100px;
+  display: block;
+  height: 100px;
+  margin: 0 auto;
+  width: 100px;
+} */
+
+.card {
+  box-shadow: 3px 3px 5px 6px #ccc;
+  max-width: 65%;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  margin-top: 50px;
+  padding: 50px;
+  margin-bottom: 5%;
+}
+/*
+.card:hover {
+  opacity: 0.2;
+
+} */
+
+.dropdown {
+  float: right;
+}
+
+.super-user-label {
+  border: 1px solid #159eee;
+  color: #159eee;
+  width: 90px;
+  margin: auto;
+  font-size: 12px;
+}
+
+.blue {
+  color: #159eee !important;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+.btn {
+  padding: 0;
+}
+
+.super-user {
+  font-size: 16px;
+  color: #777777 !important;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  cursor: pointer;
+  margin-left: 7%;
+}
+img:hover {
+  opacity: 0.5;
+}
+
+.input-upload {
+  display: none;
+}
+
+.about-me {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  white-space: pre-wrap;
+}
+
+.img-helper-text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(29, 106, 154, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.img-container:hover .img-helper-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal {
+  margin-top: 216px;
+}
+
+.emoticon-container {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 75px;
+}
+.fa-smile-o, .fa-user {
+  color: #777777 !important;
+}
+
+a {
+  margin-left: 40%;
+}
+/* i:hover {
+  color: #4285F4;
+} */
+
+.helper-text {
+  text-align: center;
+}
+
+#fName, #lName, #email, #phone {
+  width: 25%;
+  margin: auto;
+}
+
+.edit-form {
+  margin-top: 50px;
+}
+
+.modal-footer {
+  text-align: center;
+}
+
+.btn-custom {
+  width: 100px;
+  height: 35px;
+}
+
+.btn-primary {
+  padding: 10px 30px !important;
+}
+
+.btn-success {
+  background-color: #5cb85c !important;
+  font-size: 16px;
+  border: none;
+  padding: 8px 25px;
+}
+
+textarea {
+  height: 120px;
+  width: 670px;
+  min-height: 50px;
+  min-width: 50px;
+  margin: auto;
+}
+
+.dropdown-menu {
+  position: fixed;
+}
+
+.dropdown .dropdown-menu .dropdown-item {
+  padding: 1rem;
+  margin-left: 0;
+}
+
+.dropdown .dropdown-menu .dropdown-item:hover {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
+  color: white;
+}

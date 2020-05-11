@@ -1,0 +1,27 @@
+.header-row {
+    width: 1500px;
+    position: relative;
+    bottom: 30px;
+}
+
+.menu-items {
+    /* margin-left:20px */
+}
+.menu-item {
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    top: 15px;
+    padding-bottom: 38px;
+    color: #333333;
+}
+.menu-item:hover {
+    border-bottom-width: 5px;
+    border-bottom-style: solid;
+    border-bottom-color: #159eee;
+    color: #159eee;
+    cursor: pointer;
+}

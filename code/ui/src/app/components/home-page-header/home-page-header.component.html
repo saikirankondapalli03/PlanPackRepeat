@@ -1,0 +1,29 @@
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="row">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand" (click)="navigateToHome()">
+          <h2>PlanPackRepeat</h2>
+          <span class="slogan">plan your itinerary</span>
+        </div>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse navbar-right">
+        <ul class="nav navbar-nav">
+          <li><a [routerLink]="'/dashboard'" [ngClass]="{'disabled': !authService.loggedIn}">Home</a></li>
+          <li><a [routerLink]="'/itinerary/create-itinerary/info'" [ngClass]="{'disabled': !authService.loggedIn}">New
+            Itinerary</a></li>
+          <li><a [routerLink]="'/profile'" [ngClass]="{'disabled': !authService.loggedIn}">Profile</a></li>
+          <li *ngIf="authService.loggedIn"><a (click)="authService.logout()">Sign out</a></li>
+          <li *ngIf="!authService.loggedIn"><a (click)="authService.login()">Sign in</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

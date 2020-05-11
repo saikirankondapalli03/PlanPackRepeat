@@ -1,0 +1,22 @@
+<div *ngIf="renderParentContent; else renderLocalContent">
+  <ng-content></ng-content>
+</div>
+
+<ng-template #renderLocalContent>
+  <button
+    class="btn btn-success uploader-btn"
+    [disabled]="!selectedFiles"
+    (click)="upload()"
+  >
+    Upload
+  </button>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="container uploader-container">
+        <label class="btn btn-default"></label>
+        <input type="file" (change)="selectFile($event)" multiple />
+      </div>
+    </div>
+  </div>
+</ng-template>

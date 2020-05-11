@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+.logo {
+    background-image: url("../assets/travel-app-icon.png");
+    width: 50px;
+    height: 50px;
+}
+.standard-btn {
+    /* width: 150px; */
+    height: 45px;
+    border-radius: 5px;
+  }
+.standard-btn span {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+.pac-container {
+    z-index: 10000 !important;
+}

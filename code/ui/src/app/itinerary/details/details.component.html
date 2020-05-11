@@ -1,0 +1,133 @@
+<div class="container">
+  <ng-container *ngIf="!errorMessage; else error">
+    <!-- Page Heading -->
+    <div *ngIf="itineraryDetails">
+      <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h4 mb-0 text-gray-800">
+          Itinerary Details
+        </h1>
+        <div
+          class="status"
+          [ngClass]="{
+            public: itineraryDetails.public,
+            private: !itineraryDetails.public
+          }"
+        >
+          {{ itineraryDetails.public ? "Public" : "Private" }}
+        </div>
+
+        <div (click)="toggleLikeItinerary()" class="like">
+          <i
+            *ngIf="itineraryLikes.includes(userEmail); else noLikes"
+            class="fa fa-heart"
+            aria-hidden="true"
+          ></i>
+          <ng-template #noLikes>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </ng-template>
+          <span *ngIf="itineraryLikes.length > 0" class="number">{{
+            itineraryLikes.length
+          }}</span>
+        </div>
+      </div>
+      <div class="row" id="home">
+        <!-- Budget card -->
+        <div class="col-md-4">
+          <div class="card border-left-budget shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col-auto">
+                  <i
+                    class="fa fa-money fa-2x text-gray-300"
+                    style="float: right;"
+                  ></i>
+                </div>
+                <div class="custom-margin margin-0 col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                    Budget
+                  </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800">
+                    ${{ getTripBudget() }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="itinerary-name">
+        <div class="title">Itinerary Name</div>
+        <div class="name">{{ itineraryDetails.itineraryName }}</div>
+      </div>
+
+      <div class="itinerary-date">
+        <div class="title">Start Date</div>
+        <div class="name">
+          {{ itineraryDetails.startDate | date: "fullDate" }}
+        </div>
+      </div>
+
+      <div class="itinerary-date">
+        <div class="title">End Date</div>
+        <div class="name">
+          {{ itineraryDetails.endDate | date: "fullDate" }}
+        </div>
+      </div>
+
+      <div
+        *ngIf="!itineraryDetails.public && userEmail === itineraryDetails.email"
+        class="itinerary-date visibility-key"
+        (click)="showVisibilityKey = true; updateItinerary()"
+      >
+        <div class="title">Visibility Key</div>
+        <div *ngIf="!showVisibilityKey" class="name">***************</div>
+        <div *ngIf="showVisibilityKey" class="name">
+          {{ itineraryDetails.visibilityKey }}
+        </div>
+      </div>
+
+      <!-- Destinations table -->
+      <table class="table">
+        <thead class="text-primary text-uppercase">
+          <tr>
+            <th>Destinations</th>
+            <th>Street Address</th>
+            <th>Time</th>
+            <th *ngIf="userInfo.adminUser">Budget</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let destination of itineraryDetails.destinations">
+            <td>{{ destination?.destName }}</td>
+            <td>
+              {{ destination?.address }}
+              <span class="maps-icon"
+                ><i class="fa fa-map-marker" aria-hidden="true"></i
+              ></span>
+            </td>
+            <td>{{ destination?.plannedTime | date: "MMM d, y, h:mm a" }}</td>
+            <td *ngIf="userInfo.adminUser">${{ destination?.budget }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="photos">
+        <div class="title">Photos</div>
+        <div class="row">
+          <div
+            class="photo-container"
+            *ngFor="let photoSource of itineraryDetails.pictures"
+          >
+            <div class="col-md-6">
+              <img class="photo-img" [src]="photoSource" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #error>
+    <div class="error-msg">{{ errorMessage }}</div>
+  </ng-template>
+</div>

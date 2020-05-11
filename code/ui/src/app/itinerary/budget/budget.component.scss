@@ -1,0 +1,53 @@
+.budget-container {
+  margin-top: 50px;
+  font-size: 25px;
+
+  .budget {
+    margin-bottom: 20px;
+  }
+
+  .photos-uploader {
+    margin-top: 50px;
+  }
+}
+
+input {
+  height: 42px;
+
+  &::placeholder {
+    color: rgba(135, 155, 169, 0.5);
+    text-align: left;
+  }
+
+  background: white;
+  text-align: right;
+}
+
+.gray {
+  color: #777777 !important;
+}
+
+img {
+  max-height: 150px;
+  max-width: 260px;
+  margin-top: 20px;
+  border: 5px solid gray;
+}
+
+.navigation-footer {
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+
+.next {
+  float: right;
+
+  @media screen and (max-width: 375px) {
+    float: left;
+    margin-bottom: 20px;
+  }
+}
+
+.previous-button {
+  float: left;
+}
