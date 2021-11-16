@@ -24,7 +24,7 @@
     "@fortawesome/angular-fontawesome": "^0.4.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.19",
     "@fortawesome/free-solid-svg-icons": "^5.9.0",
-    "aws-sdk": "2.520.0",
+    "aws-sdk": "2.814.0",
     "crypto-js": "^3.1.9-1",
     "firebase": "^7.5.0",
     "firebase-tools": "^7.8.1",
