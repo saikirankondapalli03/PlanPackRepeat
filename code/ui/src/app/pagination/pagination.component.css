@@ -1,0 +1,52 @@
+/* Minimal styles – uses Bootstrap (table, btn, badge, pagination) from app.
+   Interview: Part 9 – Material-style elevation optional; we keep it simple. */
+
+.pagination-demo {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.pagination-demo h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pagination-demo .lead {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+.pagination-demo .rows-per-page {
+  margin-bottom: 1rem;
+}
+.pagination-demo .rows-per-page label { margin-right: 0.5rem; }
+.pagination-demo .rows-per-page .form-control { margin-right: 0.5rem; width: 80px; }
+
+/* Highlight last-applied row (Bootstrap 4 has .table-active; B3 may not) */
+.pagination-demo .table-active,
+.pagination-demo tbody tr.table-active {
+  background-color: rgba(0, 123, 255, 0.15);
+}
+
+.pagination-demo .badge {
+  font-size: 0.8rem;
+}
+
+/* Bootstrap 3 lacks badge-success/warning/secondary; add for interview demo */
+.pagination-demo .badge-success { background-color: #5cb85c; color: #fff; }
+.pagination-demo .badge-warning { background-color: #f0ad4e; color: #fff; }
+.pagination-demo .badge-secondary { background-color: #777; color: #fff; }
+.pagination-demo .badge-light { background-color: #f5f5f5; color: #333; }
+
+.pagination-demo .pagination-nav {
+  margin-top: 1rem;
+}
+.pagination-demo .page-link {
+  cursor: pointer;
+}
+
+.pagination-demo .page-item.disabled .page-link {
+  cursor: not-allowed;
+}

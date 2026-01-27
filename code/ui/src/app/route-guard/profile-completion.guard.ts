@@ -7,7 +7,7 @@ import {
   Router
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { UserService } from '../services/user.service';
 
@@ -22,24 +22,29 @@ export class ProfileCompletionGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean|UrlTree> | boolean {
-    let userEmail: string;
-    return true;
-    return this.userService.getUserInfo('contact.saransh29@gmail.com').pipe(map(
-          localUserInfoRef => {
-            if (!localUserInfoRef.firstName || !localUserInfoRef.lastName) {
-              this.navigateToProfilePage()
-              return false;
-            }
-            return true;
-          },
-          error => {
-            this.navigateToProfilePage()
-            return false;
-          }
-        ));
+    const userEmail = this.userService.userEmail;
+    
+    if (!userEmail) {
+      this.navigateToProfilePage();
+      return false;
+    }
+
+    return this.userService.getUserInfo(userEmail).pipe(
+      map(localUserInfoRef => {
+        if (!localUserInfoRef || !localUserInfoRef.firstName || !localUserInfoRef.lastName) {
+          this.navigateToProfilePage();
+          return false;
+        }
+        return true;
+      }),
+      catchError(error => {
+        this.navigateToProfilePage();
+        return of(false);
+      })
+    );
   }
 
   private navigateToProfilePage(): void {
     this.router.navigateByUrl('/profile');
   }
-  }
+}

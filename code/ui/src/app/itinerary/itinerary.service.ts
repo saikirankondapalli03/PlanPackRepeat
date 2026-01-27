@@ -182,12 +182,17 @@ export class ItineraryService {
 
   getDateHtmlDate(date): string {
     const dateObj = new Date(date);
-    return dateObj.getFullYear() + '-' + dateObj.getMonth() + '-' + dateObj.getDate();
+    const year = dateObj.getFullYear();
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+    const day = dateObj.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   getDateHtmlTime(date): string {
     const dateObj = new Date(date);
-    return dateObj.getHours() + ':' + dateObj.getMinutes();
+    const hours = dateObj.getHours().toString().padStart(2, '0');
+    const minutes = dateObj.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
   }
 
   updateItinerary(itineraryId: string, payload: any): Observable<any> {

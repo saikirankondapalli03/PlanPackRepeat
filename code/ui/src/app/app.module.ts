@@ -32,6 +32,9 @@ import { ItineraryModule } from './itinerary/itinerary.module';
 import { HomePageHeaderComponent } from './components/home-page-header/home-page-header.component';
 import { HomePageCarouselViewComponent } from './components/home-page-carousel-view/home-page-carousel-view.component';
 import { SearchItineraryComponent } from './components/search-itinerary/search-itinerary.component';
+import { MsalModule } from '@azure/msal-angular';
+import { msalConfig, msalGuardConfig } from './auth/azure-ad/msal-config';
+import { CallbackAzureComponent } from './pages/callback-azure/callback-azure.component';
 
 export function hljsLanguages() {
   return [{ name: 'json', func: json }];
@@ -41,6 +44,7 @@ export function hljsLanguages() {
   declarations: [
     AppComponent,
     CallbackComponent,
+    CallbackAzureComponent,
     HomeComponent,
     ProfileComponent,
     NavBarComponent,
@@ -73,7 +77,8 @@ export function hljsLanguages() {
       positionClass: 'toast-top-right'
     }),
     ItineraryModule,
-    SharedModule
+    SharedModule,
+    MsalModule.forRoot(msalConfig, msalGuardConfig)
   ],
   providers: [ UserService, HttpClient, LoadingService, PagerService, MessageService ],
   bootstrap: [AppComponent]

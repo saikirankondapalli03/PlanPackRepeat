@@ -1,0 +1,86 @@
+<!-- Interview: Part 1 - Template; Part 2 - Data binding, directives -->
+<div class="pagination-demo">
+  <h1>Pagination Demo (Angular Interview Prep)</h1>
+  <p class="lead">Static data, 4 columns, Apply button per row. See README in <code>pagination/</code> for concept mapping.</p>
+
+  <!-- Part 2 - *ngIf: show message only when an item was applied -->
+  <div *ngIf="lastApplied" class="alert alert-info" role="alert">
+    <strong>Last applied:</strong> {{ lastApplied.name }} ({{ lastApplied.category }}) – {{ lastApplied.status }}
+  </div>
+
+  <!-- Part 5 - Reactive Forms: formControlName not used here; we use [formControl] programmatically.
+       Part 2 - Two-way binding would use [(ngModel)]; we use valueChanges instead for demo. -->
+  <div class="form-inline rows-per-page">
+    <label>Rows per page:</label>
+    <input
+      type="number"
+      class="form-control"
+      [formControl]="pageSizeControl"
+      min="1"
+      max="20"
+    />
+    <small *ngIf="pageSizeControl.invalid && pageSizeControl.touched" class="text-danger">
+      Enter 1–20
+    </small>
+  </div>
+
+  <div #tableContainer class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Part 2 - *ngFor, trackBy, interpolation, property binding, event binding -->
+        <tr
+          *ngFor="let row of pagedData?.items; trackBy: trackById"
+          [ngClass]="{ 'table-active': lastApplied && lastApplied.id === row.id }"
+        >
+          <td>{{ row.id }}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.category }}</td>
+          <td>
+            <span class="badge" [ngClass]="row.status | statusBadge">{{ row.status }}</span>
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-sm btn-primary"
+              (click)="applyItem(row)"
+            >
+              Apply
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination controls -->
+  <nav aria-label="Page navigation" class="pagination-nav">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [ngClass]="{ disabled: currentPage <= 1 }">
+        <a class="page-link" href="javascript:void(0)" (click)="currentPage > 1 && setPage(currentPage - 1)">Previous</a>
+      </li>
+      <li
+        *ngFor="let p of pagedData?.pages"
+        class="page-item"
+        [ngClass]="{ active: p === currentPage }"
+      >
+        <a class="page-link" href="javascript:void(0)" (click)="setPage(p)">{{ p }}</a>
+      </li>
+      <li class="page-item" [ngClass]="{ disabled: currentPage >= pagedData?.totalPages }">
+        <a class="page-link" href="javascript:void(0)" (click)="currentPage < (pagedData?.totalPages || 1) && setPage(currentPage + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+
+  <p class="text-muted">
+    Page {{ currentPage }} of {{ pagedData?.totalPages || 1 }} ({{ pagedData?.totalItems || 0 }} items)
+  </p>
+</div>
