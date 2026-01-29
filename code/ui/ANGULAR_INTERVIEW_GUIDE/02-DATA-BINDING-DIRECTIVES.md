@@ -503,6 +503,10 @@ Look at your `info.component.html` and identify:
 7. **`[ngClass]`** = Dynamic CSS classes
 8. **`[ngStyle]`** = Dynamic inline styles
 
+9. **`Subject`**: No memory, only future values
+10. **`BehaviorSubject`**: Stores 1 value (current state), accessible via .value
+11. **`ReplaySubject`**: Stores N values (history), replays to new subscribers
+
 ---
 
 **Next**: [Part 3 - Services & Dependency Injection](./03-SERVICES-DEPENDENCY-INJECTION.md)

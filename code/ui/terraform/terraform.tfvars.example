@@ -1,0 +1,52 @@
+# Example Terraform variables file
+# Copy this file to terraform.tfvars and update with your values
+
+environment = "dev"  # Options: dev, uat, prod
+
+aws_region = "us-east-1"
+
+cluster_name = "spring-boot-eks-cluster"
+
+kubernetes_version = "1.33"
+
+# VPC Configuration
+vpc_id = "vpc-xxxxxxxxxxxxxxxxx"
+subnet_ids = [
+  "subnet-xxxxxxxxxxxxxxxxx",
+  "subnet-yyyyyyyyyyyyyyyyy",
+  "subnet-zzzzzzzzzzzzzzzzz"
+]
+
+# Optional: Control plane subnets (if different from node subnets)
+# control_plane_subnet_ids = []
+
+# Application Configuration
+app_name = "spring-boot-app"
+app_image = "your-account.dkr.ecr.us-east-1.amazonaws.com/spring-boot-app"
+app_image_tag = "latest"
+
+# Spring Boot Configuration
+spring_profiles_active = "dev"  # Should match environment: dev, uat, or prod
+
+# Additional Spring Boot configuration
+spring_config_additional = {
+  # Example: "SPRING_DATASOURCE_URL" = "jdbc:postgresql://db.example.com:5432/mydb"
+  # Example: "SPRING_DATASOURCE_USERNAME" = "dbuser"
+}
+
+# Ingress Configuration
+ingress_enabled = true
+ingress_host = "app-dev.example.com"  # Update per environment
+ingress_class = "nginx"
+ingress_tls_enabled = true
+ingress_tls_secret_name = ""  # Leave empty to auto-generate
+
+# Node Group Configuration
+node_group_instance_types = ["t3.medium"]
+
+# Tags
+tags = {
+  Project     = "SpringBootApp"
+  Environment = "dev"
+  ManagedBy   = "Terraform"
+}
